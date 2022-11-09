@@ -12,9 +12,9 @@
 use strict;
 use warnings;
 
-my $queue_id_command = q/ipcs -q | awk '{print $2" "$6}' | grep -vi message/;
 my @body;
 my %ques;
+my $queue_id_command = q/ipcs -q | awk '{print $2" "$6}' | grep -vi message/;
 
 for(split "\n", `$queue_id_command`) {
     next if /^\D/;
