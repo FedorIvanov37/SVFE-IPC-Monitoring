@@ -24,12 +24,12 @@ for(split "\n", `$queue_id_command`) {
     chomp(my $process_name = qx/ps -ef | grep $process_pid | grep -v grep | awk '{print \$NF}'/);
     $process_name =~ s/\s+//g;
     $process_name = 'PROCESS_DOWN' if not $process_name;
-    $ques{$process_name} = 0 if not $ques{$process_name};
+    $ques{$process_name} = 0 if not $ques{$process_name}; 
     $ques{$process_name} += $messages;
 }
 
-for (keys %ques) {
-    my $string = sprintf qq/\t{"process_name": "%s", "message": %d}/, $_, $ques{$_};
+for my $process (keys %ques) {
+    my $string = sprintf qq/\t{"process_name": "%s", "message": %d}/, $process, $ques{$process};
     push(@body, $string);
 }
 
