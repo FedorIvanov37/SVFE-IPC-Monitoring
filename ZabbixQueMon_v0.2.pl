@@ -29,7 +29,7 @@ for(split "\n", `$queue_id_command`) {
 }
 
 for (keys %ques) {
-    my $string = sprintf qq/\t{"process_name": "%s", "message":%d}/, $_, $ques{$_};
+    my $string = sprintf qq/\t{"process_name": "%s", "message": %d}/, $_, $ques{$_};
     push(@body, $string);
 }
 
