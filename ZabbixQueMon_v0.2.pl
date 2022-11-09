@@ -38,6 +38,6 @@ for (keys %ques) {
 }
 
 $body = substr $body, 0, length($body) -2;
-$body = sprintf "[\n${body}\n]";
+$body = "[\n${body}\n]";
 
 say $body;
