@@ -19,7 +19,7 @@ my $queue_id_command = q/ipcs -q | awk '{print $2" "$6}' | grep -vi message/;
 
 for(split "\n", `$queue_id_command`) {
     next if /^\D/;
-    my ($qid, $messages, $process_pid, $process_name);
+    my ($qid, $messages, $process_pid, $process_name) = '';
     ($qid, $messages) = split;
     chomp($process_pid = qx/ipcs -p | grep $qid | awk '{print \$NF}'/);
     next if not $process_pid;
