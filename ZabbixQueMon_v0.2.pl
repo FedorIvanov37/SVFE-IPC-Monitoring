@@ -37,8 +37,7 @@ for(split "\n", qx(GET_QUEUES)) {
 }
 
 for my $process (keys %queues) {
-    my $string = sprintf STRING_TEMPLATE, $process, $queues{$process};
-    push(@body, $string);
+    push(@body, sprintf STRING_TEMPLATE, $process, $queues{$process});
 }
 
 my $output = sprintf OUTPUT_TEMPLATE, join(",\n", @body);
