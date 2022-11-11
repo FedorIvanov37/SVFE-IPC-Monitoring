@@ -13,8 +13,8 @@ use strict;
 use warnings;
 use 5.010;
 
-my @body;
-my %ques;
+my @body = ();
+my %queues = ();
 my $queue_id_command = q/ipcs -q | awk '{print $2" "$6}' | grep -vi message/;
 
 for(split "\n", `$queue_id_command`) {
@@ -26,12 +26,12 @@ for(split "\n", `$queue_id_command`) {
     chomp($process_name = qx/ps -ef | grep $process_pid | grep -v grep | awk '{print \$NF}'/);
     $process_name =~ s/\s+//g;
     $process_name = 'PROCESS_DOWN' if not $process_name;
-    $ques{$process_name} = 0 if not $ques{$process_name}; 
-    $ques{$process_name} += $messages;
+    $queues{$process_name} = 0 if not $queues{$process_name}; 
+    $queues{$process_name} += $messages;
 }
 
-for my $process (keys %ques) {
-    my $string = sprintf qq/  {\n    "process_name": "%s",\n    "message": %d\n  }/, $process, $ques{$process};
+for my $process (keys %queues) {
+    my $string = sprintf qq/  {\n    "process_name": "%s",\n    "message": %d\n  }/, $process, $queues{$process};
     push(@body, $string);
 }
 
