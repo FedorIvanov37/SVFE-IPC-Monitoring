@@ -13,12 +13,12 @@ use strict;
 use warnings;
 use 5.010;
 
-use constant GET_QUEUES => q/ipcs -q | awk '{print $2" "$6}' | grep -vi message/;
-use constant GET_PROCESS_ID => q/ipcs -p | grep %s | awk '{print \$NF}'/;
+use constant PROCESS_DOWN     => 'PROCESS_DOWN';
+use constant OUTPUT_TEMPLATE  => '[\n%s\n]';
+use constant STRING_TEMPLATE  => q/  {\n    "process_name": "%s",\n    "message": %d\n  }/;
+use constant GET_QUEUES       => q/ipcs -q | awk '{print $2" "$6}' | grep -vi message/;
+use constant GET_PROCESS_ID   => q/ipcs -p | grep %s | awk '{print \$NF}'/;
 use constant GET_PROCESS_NAME => q/ps -ef | grep %s | grep -v grep | awk '{print \$NF}'/;
-use constant STRING_TEMPLATE => q/  {\n    "process_name": "%s",\n    "message": %d\n  }/;
-use constant OUTPUT_TEMPLATE => q/[\n%s\n]/;
-use constant PROCESS_DOWN => q/PROCESS_DOWN/;
 
 my @body = ();
 my %queues = ();
