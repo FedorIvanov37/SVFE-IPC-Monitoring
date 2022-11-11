@@ -23,13 +23,19 @@ use constant GET_PROCESS_NAME => q/ps -ef | grep %s | grep -v grep | awk '{print
 my @body = ();
 my %queues = ();
 
+sub execute_command {
+    my ($command_template, $param) = @_;
+    my $command = sprintf $command_template, $param;
+    chomp(qx($command));
+}
+
 for(split "\n", qx(GET_QUEUES)) {
     next if /^\D/;
     my ($qid, $messages, $process_pid, $process_name) = '';
     ($qid, $messages) = split;
-    chomp($process_pid = qx(sprintf GET_PROCESS_ID, $qid));
+    $process_pid = execute_command(GET_PROCESS_ID, $qid));
     next if not $process_pid;
-    chomp($process_name = qx(sprintf GET_PROCESS_NAME, $process_pid));
+    $process_name = execute_command(GET_PROCESS_NAME, $process_pid));
     $process_name =~ s/\s+//g;
     $process_name = PROCESS_DOWN if not $process_name;
     $queues{$process_name} = 0 if not $queues{$process_name}; 
