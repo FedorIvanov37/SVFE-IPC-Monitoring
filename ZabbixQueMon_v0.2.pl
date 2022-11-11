@@ -11,6 +11,7 @@
 
 use strict;
 use warnings;
+use 5.010;
 
 my @body;
 my %ques;
@@ -18,10 +19,11 @@ my $queue_id_command = q/ipcs -q | awk '{print $2" "$6}' | grep -vi message/;
 
 for(split "\n", `$queue_id_command`) {
     next if /^\D/;
-    my ($qid, $messages) = split;
-    chomp(my $process_pid = qx/ipcs -p | grep $qid | awk '{print \$NF}'/);
+    my ($qid, $messages, $process_pid, $process_name);
+    ($qid, $messages) = split;
+    chomp($process_pid = qx/ipcs -p | grep $qid | awk '{print \$NF}'/);
     next if not $process_pid;
-    chomp(my $process_name = qx/ps -ef | grep $process_pid | grep -v grep | awk '{print \$NF}'/);
+    chomp($process_name = qx/ps -ef | grep $process_pid | grep -v grep | awk '{print \$NF}'/);
     $process_name =~ s/\s+//g;
     $process_name = 'PROCESS_DOWN' if not $process_name;
     $ques{$process_name} = 0 if not $ques{$process_name}; 
@@ -33,4 +35,6 @@ for my $process (keys %ques) {
     push(@body, $string);
 }
 
-printf "[\n%s\n]\n", join(",\n", @body);
+my $output = sprintf "[\n%s\n]", join(",\n", @body);
+
+say $output;
