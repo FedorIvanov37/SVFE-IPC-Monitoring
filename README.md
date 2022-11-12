@@ -3,9 +3,9 @@
 ## :: SVFE Queues Monitoring for Zabbix ::  
 Version v1.0
 
-###  Usage annotation
+###  Purpose 
 
-Prints JSON-like list of dictionaries in Linux shell, informing about the current state of interprocess queues. In use by Zabbix monitoring system. The script runs by Zabbix agent in an endless cycle for online tracking interaction between SVFE processes
+The script prints JSON-like list of dictionaries in Linux shell, informing about the current state of interprocess queues. In use by Zabbix monitoring system. The script runs by Zabbix agent in an endless cycle for online tracking interaction between SVFE processes
  
 The queues data will be printed one time after each script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
 
@@ -54,11 +54,10 @@ $ perl ./script.pl;   # Will run even if you have read-only permissions
  * Technically script can return empty list - [ ]. In case when SVFE doesn't run properly or server has no active queues at the moment
 
 ### System requirements
-
-* Perl 5; (!) Not compatible with Perl 6
-* Linux server with available shell commands: ipcs, awk, grep, ps
-* SVFE on the same server in a running state
-* Has been tested on Linux Centos only 
+ * Perl 5; (!) Not compatible with Perl 6
+ * Linux server with available shell commands: ipcs, awk, grep, ps
+ * SVFE on the same server in a running state
+ * Has been tested on Linux Centos only 
 
 ### Author
 
