@@ -34,7 +34,7 @@ use constant TEMPLATE_OUTPUT => qq([\n%s\n]);
 # Entry point, the script stars here. 
 use constant OUTPUT_DATA_STR => get_output_data();
 
-# We are using constant to guarantee no changes will be made after we'll get the output
+# We are using constant to guarantee no changes will be made once we got the output
 say OUTPUT_DATA_STR;
 
 
