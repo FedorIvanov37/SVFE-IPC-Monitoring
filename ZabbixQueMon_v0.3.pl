@@ -47,7 +47,7 @@ say get_output_data(); # Entry point, the script start work here
 # No changes should be made with result of the function, the result fully ready to be printed
 # When no running queues were found in the system the function will return empty result using TEMPLATE_OUTPUT
 sub get_output_data { 
-    my $output = '';
+    my $output;
     my @body = ();
     my %queues = get_queues();
 
@@ -55,7 +55,7 @@ sub get_output_data {
         push(@body, sprintf TEMPLATE_STRING, $process, $queues{$process});
     }
 
-    $output = @body ? join(',', @body) : $output;
+    $output = @body ? join(',', @body) : '';
     $output = sprintf TEMPLATE_OUTPUT, $output;
     
     return $output;
