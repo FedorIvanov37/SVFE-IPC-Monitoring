@@ -1,19 +1,8 @@
-![image](https://upload.wikimedia.org/wikipedia/commons/0/02/Aperture_Laboratories_Logo.svg)
+## :: SV IPC Monitoring :: 
+ ![image](https://thumbs.gfycat.com/CheerySeparateGoldeneye-size_restricted.gif)
 
-## :: SV IPC Monitoring for Zabbix ::  
-Version v1.0
+v1.0
 
-```
-
- ::::::::  :::     :::      ::::::::::: :::::::::   ::::::::  
-:+:    :+: :+:     :+:          :+:     :+:    :+: :+:    :+: 
-+:+        +:+     +:+          +:+     +:+    +:+ +:+        
-+#++:++#++ +#+     +:+          +#+     +#++:++#+  +#+        
-       +#+  +#+   +#+           +#+     +#+        +#+        
-#+#    #+#   #+#+#+#            #+#     #+#        #+#    #+# 
- ########      ###          ########### ###         ########  
-
-```
 
 ###  Purpose 
 
@@ -42,7 +31,7 @@ $ perl ./script.pl;   # Will run even if you have read-only permissions
 
 ### Output example and explanation
 
-```java
+```js
 [                                    // The JSON-like list 
   {                                  // Of individual dictionaries for each process
     "process_name": "tcpcomms",      
@@ -71,8 +60,4 @@ $ perl ./script.pl;   # Will run even if you have read-only permissions
  * SVFE on the same server in a running state
  * Has been tested on Linux Centos only 
 
-### Author
 
-Developed by Fedor Ivanov | Unlimint
-
-Released in Nov 2022
