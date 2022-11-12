@@ -1,16 +1,35 @@
 #!/usr/bin/perl
 #
-# Purpose: SVFE Queue monitoring for Zabbix
+# 
+# *** SVFE Queue Monitoring for Zabbix ****
 #
-# Version: 0.3
-# Author: Fedor Ivanov
-# Nov 2022
+# Purpose: 
+#  Print in shell JSON-like list of dictionaries, informing about current state of Linux queues
+#  In use by Zabbix monitoring system. The script runs by Zabbix agent in endless cycle for online queue tracking
+#  The queue data will be printed one time after each script launch, then the script will finish the work
+#  It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times
+# 
+#  
+#
+# Output example:
+#  [
+#   
+#
+#  ]
+#
+# Script info:
+#  Version v0.3
+#  Author Fedor Ivanov | Unlimint
+#  Released in Nov 2022 
 #
 # Requirements: 
-# Perl 5.010 or above; 
-# Linux server with available shell commands: ipcs, awk, grep, ps; 
-# Running SVFE on the server
+#  Perl 5; (!) Not compatible with Perl 6;
+#  Linux server with available shell commands: ipcs, awk, grep, ps; 
+#  Running SVFE on the server;
 # 
+# Additional:
+#  Was 
+#  Has been tested on Linux Centos only
 #
 # use perl || die;
 #
