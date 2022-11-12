@@ -22,12 +22,12 @@ use 5.010;
 use constant {
     # Plain constant PROCESS_DOWN
     PROCESS_IS_DOWN => q(PROCESS_DOWN),
+    
+    # Final Output template. Output has to be returned as a JSON-like list of dictionaries
+    TEMPLATE_OUTPUT => qq([\n%s\n]),
 
     # Template for each string in the Result
     TEMPLATE_STRING => qq(\n  {\n    "process_name": "%s",\n    "message": %d\n  }),
-
-    # Final Output template. Output has to be returned as a JSON-like list of dictionaries
-    TEMPLATE_OUTPUT => qq([\n%s\n]),
 
     # Command to get all current Linux Queues. Returns Queue ID and current count of messages inside the Queue, separated by space
     COMMAND_GET_QUE => q(ipcs -q | awk '{print $2" "$6}' | grep -vi message),
