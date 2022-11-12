@@ -46,7 +46,7 @@ say STR_OUTPUT_DATA;
 
 # Calculates and returns formatted final output string
 # No changes should be made with result of the function, the result fully ready to be printed
-# When no running queues were found in the system the function will return empty JSON-list
+# When no running queues were found in the system the function will return empty result using TEMPLATE_OUTPUT
 sub get_output_data { 
     my $output = '';
     my @body = ();
