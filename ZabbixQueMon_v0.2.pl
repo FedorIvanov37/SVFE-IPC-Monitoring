@@ -32,16 +32,16 @@ use constant TEMPLATE_STRING => qq(\n  {\n    "process_name": "%s",\n    "messag
 use constant TEMPLATE_OUTPUT => qq([\n%s\n]);
 
 # Entry point, the script stars here. 
-use constant RESULT_TO_PRINT => get_output();
+use constant OUTPUT_DATA_STR => get_output_data();
 
 # We are using constant to guarantee no changes will be made after we'll get the output
-say RESULT_TO_PRINT;
+say OUTPUT_DATA_STR;
 
 
 # Calculates and returns formatted final output string
 # No changes should be made with result of the function, the result fully ready to be printed
 # When no running queues were found in system the function returns empty string
-sub get_output { 
+sub get_output_data { 
     my @body = ();
     my %queues = get_queues();
 
