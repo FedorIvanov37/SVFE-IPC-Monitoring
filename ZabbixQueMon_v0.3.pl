@@ -57,10 +57,11 @@ sub get_output_data {
     my %queues = get_queues();
 
     for my $process (keys %queues) {
-        push(@body, sprintf TEMPLATE_STRING, $process, $queues{$process});
+        my $output_string = sprintf TEMPLATE_STRING, $process, $queues{$process};
+        push(@body, $output_string);
     }
-
-    $output = @body ? join(',', @body) : '';
+    
+    $output = join(',', @body);  # $output becomes a blank string if @body has no elements
     $output = sprintf TEMPLATE_OUTPUT, $output;
     
     return $output;
