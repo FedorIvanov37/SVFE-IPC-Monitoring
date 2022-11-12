@@ -100,7 +100,7 @@ sub get_output_data {
     my @body = ();
     my %queues = @_;
 
-    while ((my $process_name, $messages_count) = each(%queues)) {
+    while ((my $process_name, $messages_count) = each %queues) {  # Split the incoming %hash to key => value pairs
         my $output_string = sprintf TEMPLATE_STRING, $process_name, $messages_count;
         push(@body, $output_string);
     }
