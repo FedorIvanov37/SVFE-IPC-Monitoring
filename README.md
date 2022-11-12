@@ -1,5 +1,5 @@
 ## :: SVFE Queues Monitoring for Zabbix ::
-
+![image](https://upload.wikimedia.org/wikipedia/commons/0/02/Aperture_Laboratories_Logo.svg)
 Version v1.0
 
 ###  Usage annotation
