@@ -1,7 +1,10 @@
 ## :: SV IPC Monitoring :: 
- ![image](https://thumbs.gfycat.com/CheerySeparateGoldeneye-size_restricted.gif)
 
-v1.0
+Version: 1.0
+
+![image](https://thumbs.gfycat.com/CheerySeparateGoldeneye-size_restricted.gif)
+
+
 
 
 ###  Purpose 
