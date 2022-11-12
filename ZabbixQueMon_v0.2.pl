@@ -41,7 +41,7 @@ use constant {
 
 # Entry point, the script stats here
 say get_output_data();
-
+# Destination point, the script finish work here
 
 # Calculates and returns formatted final output string
 # No changes should be made with result of the function, the result fully ready to be printed
