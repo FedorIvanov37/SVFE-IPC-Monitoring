@@ -44,7 +44,7 @@ sub get_output {
         push(@body, sprintf TEMPLATE_STRING, $process, $queues{$process});
     }
 
-    $output = sprintf TEMPLATE_OUTPUT, join(",", @body);
+    $output = sprintf TEMPLATE_OUTPUT, join(',', @body);
 
     return $output;
 }
