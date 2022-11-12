@@ -70,7 +70,7 @@ sub get_queues {
     my @queues_set = split "\n", execute_command(COMMAND_GET_QUE);
 
     for(@queues_set) {
-        next if /^\D/; # Proceed to the next integration if line doesn't stars from numbers (no queue id recognized)
+        next if /^\D/; # Proceed to the next integration if line doesn't starts from numbers (no queue id recognized)
         ($qid, $messages) = split;
         $process_id = execute_command(COMMAND_GET_PID, $qid);
         next if not $process_id; # Proceed to the next integration if the Process ID wasn't found using ps command
