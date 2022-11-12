@@ -100,8 +100,8 @@ sub get_output_data {
     my @body = ();
     my %queues = @_;
 
-    for my $process (keys %queues) {
-        my $output_string = sprintf TEMPLATE_STRING, $process, $queues{$process};
+    while ((my $process_name, $messages_count) = each(%queues)) {
+        my $output_string = sprintf TEMPLATE_STRING, $process_name, $messages_count;
         push(@body, $output_string);
     }
     
