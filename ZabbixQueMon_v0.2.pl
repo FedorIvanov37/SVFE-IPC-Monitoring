@@ -22,6 +22,12 @@ use constant {
     # Plain constant PROCESS_DOWN
     PROCESS_IS_DOWN => q(PROCESS_DOWN),
 
+    # Template for each string in the Result
+    TEMPLATE_STRING => qq(\n  {\n    "process_name": "%s",\n    "message": %d\n  }),
+
+    # Final Output template. Output has to be returned as a JSON-like list of dictionaries
+    TEMPLATE_OUTPUT => qq([\n%s\n]),
+
     # Command to get all current Linux Queues. Returns Queue ID and current count of messages inside the Queue, separated by space
     COMMAND_GET_QUE => q(ipcs -q | awk '{print $2" "$6}' | grep -vi message),
 
@@ -30,18 +36,11 @@ use constant {
     
     # Command to get the Process name of specific PID
     COMMAND_GET_TAG => q(ps -ef | grep -v grep | awk '{print $2" "$8}' | grep %s | awk '{print $NF}'),
-
-    # Template for each string in the Result
-    TEMPLATE_STRING => qq(\n  {\n    "process_name": "%s",\n    "message": %d\n  }),
-
-    # Final Output template. Output has to be returned as a JSON-like list of dictionaries
-    TEMPLATE_OUTPUT => qq([\n%s\n])
 };
 
 
-# Entry point, the script stats here
-say get_output_data();
-# Destination point, the script finish work here
+say get_output_data(); # Entry point, the script start work here
+
 
 # Calculates and returns formatted final output string
 # No changes should be made with result of the function, the result fully ready to be printed
