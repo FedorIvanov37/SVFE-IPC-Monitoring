@@ -71,10 +71,10 @@ sub get_queues_dict {
     my @queues_set = split "\n", execute_command(COMMAND_GET_QUE);
 
     for(@queues_set) {
-        next if /^\D/; # Proceed to the next interation if the line doesn't start from numbers (no queue id recognized)
+        next if /^\D/; # Proceed to the next iteration if the line doesn't start from numbers (no queue id recognized)
         ($qid, $messages) = split;
         $process_id = execute_command(COMMAND_GET_PID, $qid);
-        next if not $process_id; # Proceed to the next interation if the Process ID wasn't found using the "ps" command
+        next if not $process_id; # Proceed to the next iteration if the Process ID wasn't found using the Linux "ps" command
         $process_name = execute_command(COMMAND_GET_TAG, $process_id);
         $process_name =~  s/\s+//g;
         $process_name = PROCESS_IS_DOWN if not $process_name;
