@@ -46,6 +46,12 @@ $ perl ./script.pl;   # Will run even if you have read-only permissions
  // More dictionaries
 ]
 ```
+
+### Special conditions
+ * When SVFE runs a few same processes in parallel - the messages count will be summarized using the process name
+ * When the Receiver process is down the process name will be substituted by PROCESS_IS_DOWN constant
+ * Technically script can return empty list - []. In case when SVFE doesn't ruin properly or server has no active queues at the moment
+
 ### System requirements
 
 * Perl 5; (!) Not compatible with Perl 6
