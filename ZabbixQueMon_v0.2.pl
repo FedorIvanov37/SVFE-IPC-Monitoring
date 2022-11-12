@@ -6,6 +6,11 @@
 # Author: Fedor Ivanov
 # Nov 2022
 #
+# Requirements: Perl 5.010 or above; 
+# Linux server with avaivable bash commands: ipcs, awk, grep, ps; 
+# Running SVFE on the server
+# 
+#
 # use perl || die;
 #
 
