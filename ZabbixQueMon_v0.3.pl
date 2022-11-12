@@ -61,7 +61,6 @@ sub get_output_data {
     return $output;
 }
 
-
 # Returns hash, containing current state of Queues using template {"process_name": <some_receiver_process>, "messages": <count_of_messages_in_queue>}
 # When SVFE runs a few same processes in parallel - the messages count will be summarized using process name
 # When the Receiver process is down the process name will be substituted by PROCESS_IS_DOWN constant
@@ -85,7 +84,6 @@ sub get_queues {
     return %queues;
 }
 
-
 # Runs ssh commans using command template and param. Receives from zero up to one param for command template
 # When the command has no any external params the param argument can be absent, the command will be run as is
 # The sprintf function will be used for merge param into the command template
@@ -93,7 +91,7 @@ sub execute_command {
     my ($command_template, $param) = @_;
     my $command = sprintf $command_template, $param; # Merge the param to the command template
 
-    chomp(my $result  = qx($command)); # Execute the builded command 
+    chomp(my $result = qx($command)); # Execute the builded command 
 
     return $result;
 }
