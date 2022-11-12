@@ -18,30 +18,29 @@ use strict;
 use warnings;
 use 5.010;
 
-# Plain constant PROCESS_DOWN
-use constant PROCESS_IS_DOWN => q(PROCESS_DOWN);
+use constant {
+    # Plain constant PROCESS_DOWN
+    PROCESS_IS_DOWN => q(PROCESS_DOWN),
 
-# Command to get all current Linux Queues. Returns Queue ID and current count of messages inside the Queue, separated by space
-use constant COMMAND_GET_QUE => q(ipcs -q | awk '{print $2" "$6}' | grep -vi message);
+    # Command to get all current Linux Queues. Returns Queue ID and current count of messages inside the Queue, separated by space
+    COMMAND_GET_QUE => q(ipcs -q | awk '{print $2" "$6}' | grep -vi message),
 
-# Command to get the Receiver PID of specific Queue
-use constant COMMAND_GET_PID => q(ipcs -p | grep %s | awk '{print $NF}');
+    # Command to get the Receiver PID of specific Queue
+    COMMAND_GET_PID => q(ipcs -p | grep %s | awk '{print $NF}'),
+    
+    # Command to get the Process name of specific PID
+    COMMAND_GET_TAG => q(ps -ef | grep -v grep | awk '{print $2" "$8}' | grep %s | awk '{print $NF}'),
 
-# Command to get the Process name of specific PID
-use constant COMMAND_GET_TAG => q(ps -ef | grep -v grep | awk '{print $2" "$8}' | grep %s | awk '{print $NF}');
+    # Template for each string in the Result
+    TEMPLATE_STRING => qq(\n  {\n    "process_name": "%s",\n    "message": %d\n  }),
 
-# Template for each string in the Result
-use constant TEMPLATE_STRING => qq(\n  {\n    "process_name": "%s",\n    "message": %d\n  });
-
-# Final Output template. Output has to be returned as a JSON-like list of dictionaries
-use constant TEMPLATE_OUTPUT => qq([\n%s\n]);
-
-# Entry point, the script stars here. 
-use constant STR_OUTPUT_DATA => get_output_data();
+    # Final Output template. Output has to be returned as a JSON-like list of dictionaries
+    TEMPLATE_OUTPUT => qq([\n%s\n])
+};
 
 
-# We are using constant to guarantee no changes will be made once we got the output string data
-say STR_OUTPUT_DATA;
+# Entry point, the script stats here
+say get_output_data();
 
 
 # Calculates and returns formatted final output string
