@@ -95,8 +95,8 @@ sub get_queues {
 # For the merge the Param into the Command template the sprintf function will be used 
 sub execute_command {
     my ($command_template, $param) = @_;
-    my $command = sprintf $command_template, $param; # Merge the param to the command template
-
+    my $command = $param ? sprintf $command_template, $param : $command_template;
+    
     chomp(my $result = qx($command)); # Execute the builded command 
 
     return $result;
