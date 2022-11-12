@@ -40,8 +40,13 @@ use constant {
 };
 
 
-say get_output_data(); # Entry point, the script start work here
+run(); # Entry point, the script start work here
 
+
+# Execute the script
+sub run {
+    say get_output_data();
+}
 
 # Calculates and returns formatted final output string
 # No changes should be made with result of the function, the result fully ready to be printed
