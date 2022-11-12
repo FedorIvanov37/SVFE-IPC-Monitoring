@@ -52,16 +52,17 @@ sub get_output {
 
 # Returns hash, containing current state of Queues using template {"process_name": <some_receiver_process>, "messages": <count_of_messages_in_queue>}
 # When SVFE runs a few same processes in parallel - the messages count will be summarized using process name
+# When the Receiver process is down the process name will be substituted by PROCESS_IS_DOWN constant
 sub get_queues {
     my %queues = ();
     my ($qid, $messages, $process_id, $process_name) = '';
     my @queues_set = split "\n", execute_command(COMMAND_GET_QUE);
 
     for(@queues_set) {
-        next if /^\D/;
+        next if /^\D/; # Proceed to the next integration if line doesn't stars from numbers (no queue id recognized)
         ($qid, $messages) = split;
         $process_id = execute_command(COMMAND_GET_PID, $qid);
-        next if not $process_id;
+        next if not $process_id; # Proceed to the next integration if the Process ID wasn't found using ps command
         $process_name = execute_command(COMMAND_GET_TAG, $process_id);
         $process_name =~  s/\s+//g;
         $process_name = PROCESS_IS_DOWN if not $process_name;
@@ -73,12 +74,14 @@ sub get_queues {
 }
 
 
-# Runs ssh commans using template and param. The param can be absent
+# Runs ssh commans using command template and param
+# When the command has no any params the param argument can be absent
+# The sprintf function will be used for merge param into the command template
 sub execute_command {
     my ($command_template, $param) = @_;
-    my $command = sprintf $command_template, $param;
+    my $command = sprintf $command_template, $param; # Merge the param to the command template
 
-    chomp(my $result  = qx($command));
+    chomp(my $result  = qx($command)); # Execute the command
 
     return $result;
 }
