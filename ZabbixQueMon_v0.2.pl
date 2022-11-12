@@ -31,11 +31,11 @@ use constant TEMPLATE_STRING => qq(\n  {\n    "process_name": "%s",\n    "messag
 # Final Output template. Output has to be returned as a JSON-like list of dictionaries
 use constant TEMPLATE_OUTPUT => qq([\n%s\n]);
 
+# Entry point
+say get_output();
 
-say get_output(); # Entry point
-
-
-sub get_output {  # Calculates and returns formatted final output string
+# Calculates and returns formatted final output string
+sub get_output { 
     my $output = '';
     my @body = ();
     my %queues = get_queues();
