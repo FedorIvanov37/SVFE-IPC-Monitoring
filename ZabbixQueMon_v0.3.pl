@@ -39,22 +39,23 @@ use constant {
     COMMAND_GET_TAG => q(ps -ef | grep -v grep | awk '{print $2" "$8}' | grep %s | awk '{print $NF}'),
 };
 
-INIT {
-    use constant OUTPUT_STR_DATA => get_output_data();
+
+INIT{main()} # Entry point, the script start work here
+
+
+sub main { # Main
+    my %queues = get_queues();
+    my $output = parse_queues_dict(%queues);
+    say get_output_data();
 }
-
-
-# Entry point, the script start work here
-say GET_OUTPUT_STR;
-
 
 # Calculates and returns formatted final output string
 # No changes should be made with result of the function, the result fully ready to be printed
 # When no running queues were found in the system the function will return empty result using TEMPLATE_OUTPUT
-sub get_output_data { 
+sub parse_queues_dict { 
     my $output;
     my @body = ();
-    my %queues = get_queues();
+    my %queues = shift;
 
     for my $process (keys %queues) {
         my $output_string = sprintf TEMPLATE_STRING, $process, $queues{$process};
