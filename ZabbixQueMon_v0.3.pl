@@ -1,38 +1,69 @@
 #!/usr/bin/perl
-#
-# 
-# *** SVFE Queue Monitoring for Zabbix ****
-#
-# Purpose: 
-#  Print in shell JSON-like list of dictionaries, informing about current state of Linux queues
-#  In use by Zabbix monitoring system. The script runs by Zabbix agent in endless cycle for online queue tracking
-#  The queue data will be printed one time after each script launch, then the script will finish the work
-#  It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times
-# 
-#  
-#
-# Output example:
-#  [
-#   
-#
-#  ]
-#
-# Script info:
-#  Version v0.3
-#  Author Fedor Ivanov | Unlimint
-#  Released in Nov 2022 
-#
-# Requirements: 
-#  Perl 5; (!) Not compatible with Perl 6;
-#  Linux server with available shell commands: ipcs, awk, grep, ps; 
-#  Running SVFE on the server;
-# 
-# Additional:
-#  Was 
-#  Has been tested on Linux Centos only
-#
-# use perl || die;
-#
+
+=begin README.md
+
+## :: SVFE Queues Monitoring for Zabbix ::
+
+Version v1.0
+
+###  Usage annotation
+
+Prints JSON-like list of dictionaries in Linux shell, informing about the current state of interprocess queues. In use by Zabbix monitoring system. The script runs by Zabbix agent in an endless cycle for online tracking interaction between SVFE processes
+ 
+The queues data will be printed one time after each script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
+
+### The script running and I/O
+
+The script has no run parameters, you can run it as is 
+```bash
+$ perl script.pl;
+```
+
+All I/O interactions make through a standard Linux I/O stream. The output data will always be sent to the first stream - the standard stdout stream.
+
+Be aware: direct run like "./script.pl;" requires permissions to execute the script file. At the same time if you are running the script through Perl like "perl ./script.pl;" read permission will be enough to run the script.
+
+
+```bash
+$ ./script.pl;        # Will run only if you have execution permissions
+```
+```bash
+$ perl ./script.pl;   # Will run even if you have read-only permissions
+```
+
+### Output example and explanation
+
+```java
+[                                    // The JSON-like list 
+  {                                  // Of individual dictionaries for each process
+    "process_name": "tcpcomms",      
+    "message": 110                   // tcpcomms doesn't look good
+  },
+  {
+    "process_name": "PROCESS_DOWN",  // Some processes are down and accumulating the Queues
+    "message": 54
+  },
+  {
+   "process_name": "timer00",        // In the same time the timer looks fine
+   "message": 0
+ },
+ // More dictionaries
+]
+```
+### System requirements
+
+* Perl 5; (!) Not compatible with Perl 6
+* Linux server with available shell commands: ipcs, awk, grep, ps
+* SVFE on the same server in a running state
+* Has been tested on Linux Centos only 
+
+### Author
+
+Developed by Fedor Ivanov | Unlimint
+
+Released in Nov 2022
+
+=cut README.md
 
 use strict;
 use warnings;
@@ -60,10 +91,11 @@ use constant {
 
 sub main { 
 
-    #
+    # *** I/O *** 
     # Input: No
     # Output: No
     #
+    # *** Purpose *** 
     # General high-level function for running the main scenario 
     # The function has no input and output and doesn't perform any data processing by itself, manages other functions instead 
     #
@@ -72,14 +104,18 @@ sub main {
     my $output = get_output_data(%queues);
     
     say $output;
+    
+    # The script's work finished here. Next action is unconditional exit
 }
 
 sub get_queues_dict {
 
     #
+    # *** I/O *** 
     # Input: No
     # Output: %hash {"process_name": <some_receiver_process>, "messages": <count_of_messages_in_queue>, ...}
     #
+    # *** Purpose *** 
     # Returns hash, containing current state of Queues using template {"process_name": <some_receiver_process>, "messages": <count_of_messages_in_queue>}
     # When SVFE runs a few same processes in parallel - the messages count will be summarized using the process name
     # When the Receiver process is down the process name will be substituted by PROCESS_IS_DOWN constant
@@ -107,9 +143,11 @@ sub get_queues_dict {
 sub get_output_data { 
 
     #
+    # *** I/O *** 
     # Input: %hash {"process_name": <some_receiver_process>, "messages": <count_of_messages_in_queue>, ...}
     # Output: $string, ready to print without any changes
     #
+    # *** Purpose ***
     # Calculates and returns formatted final output string
     # No changes should be made to the result of the function, the result fully ready to be printed
     # When no running queues were found in the system the function will return an empty result using TEMPLATE_OUTPUT
@@ -119,7 +157,7 @@ sub get_output_data {
     my @body = ();
     my %queues = @_;
 
-    while ((my $process_name, $messages_count) = each %queues) {  # Split the incoming %hash to key => value pairs
+    while (my ($process_name, $messages_count) = each %queues) {  # Split the incoming %hash to key => value pairs
         my $output_string = sprintf TEMPLATE_STRING, $process_name, $messages_count;
         push(@body, $output_string);
     }
@@ -133,9 +171,11 @@ sub get_output_data {
 sub execute_command {
 
     #
+    # *** I/O *** 
     # Input: @list of $strings, the first element is the command template, the others - are command params to be merged with the template
     # Output: $string, the command execution result
     #
+    # *** Purpose ***
     # Runs ssh commands using incoming command template and params
     # When the command has no external params the Params can be absent, the command will be run as is
     # For the merge of the Params with the Command template the sprintf function will be used 
