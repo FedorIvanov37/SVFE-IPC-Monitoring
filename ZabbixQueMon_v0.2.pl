@@ -36,7 +36,6 @@ say get_output();
 
 # Calculates and returns formatted final output string
 sub get_output { 
-    my $output = '';
     my @body = ();
     my %queues = get_queues();
 
@@ -44,7 +43,7 @@ sub get_output {
         push(@body, sprintf TEMPLATE_STRING, $process, $queues{$process});
     }
 
-    $output = sprintf TEMPLATE_OUTPUT, join(',', @body);
+    my $output = @body ? sprintf TEMPLATE_OUTPUT, join(',', @body) : '';
 
     return $output;
 }
