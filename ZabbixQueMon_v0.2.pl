@@ -32,10 +32,11 @@ use constant TEMPLATE_STRING => qq(\n  {\n    "process_name": "%s",\n    "messag
 use constant TEMPLATE_OUTPUT => qq([\n%s\n]);
 
 # Entry point, the script stars here. 
-use constant OUTPUT_DATA_STR => get_output_data();
+use constant STR_OUTPUT_DATA => get_output_data();
 
-# We are using constant to guarantee no changes will be made once we got the output
-say OUTPUT_DATA_STR;
+
+# We are using constant to guarantee no changes will be made once we got the output string data
+say STR_OUTPUT_DATA;
 
 
 # Calculates and returns formatted final output string
