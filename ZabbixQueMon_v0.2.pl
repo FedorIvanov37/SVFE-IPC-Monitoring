@@ -73,7 +73,7 @@ sub get_queues {
 }
 
 
-# Runs ssh co
+# Runs ssh commans using template and param. The param can be absent
 sub execute_command {
     my ($command_template, $param) = @_;
     my $command = sprintf $command_template, $param;
