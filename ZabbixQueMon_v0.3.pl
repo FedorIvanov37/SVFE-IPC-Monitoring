@@ -86,7 +86,7 @@ sub get_queues {
 
 # Runs ssh commans using command template and param. Receives from zero up to one param for command template
 # When the command has no any external params the param argument can be absent, the command will be run as is
-# The sprintf function will be used for merge param into the command template
+# For the merge the Param into the Command template the sprintf function will be used 
 sub execute_command {
     my ($command_template, $param) = @_;
     my $command = sprintf $command_template, $param; # Merge the param to the command template
