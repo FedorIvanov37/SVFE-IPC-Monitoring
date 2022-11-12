@@ -31,10 +31,16 @@ use constant TEMPLATE_STRING => qq(\n  {\n    "process_name": "%s",\n    "messag
 # Final Output template. Output has to be returned as a JSON-like list of dictionaries
 use constant TEMPLATE_OUTPUT => qq([\n%s\n]);
 
-# Entry point
-say get_output();
+# Entry point, the script stars here. 
+use constant RESULT_TO_PRINT => get_output();
+
+# We are using constant to guarantee no changes will be made after we'll get the output
+say RESULT_TO_PRINT;
+
 
 # Calculates and returns formatted final output string
+# No changes should be made with result of the function, the result fully ready to be printed
+# When no running queues were found in system the function returns empty string
 sub get_output { 
     my @body = ();
     my %queues = get_queues();
