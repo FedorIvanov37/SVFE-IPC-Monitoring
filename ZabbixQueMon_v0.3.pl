@@ -39,14 +39,14 @@ use constant {
     COMMAND_GET_TAG => q(ps -ef | grep -v grep | awk '{print $2" "$8}' | grep %s | awk '{print $NF}'),
 };
 
-
-run(); # Entry point, the script start work here
-
-
-# Execute the script
-sub run {
-    say get_output_data();
+INIT {
+    use constant OUTPUT_STR_DATA => get_output_data();
 }
+
+
+# Entry point, the script start work here
+say GET_OUTPUT_STR;
+
 
 # Calculates and returns formatted final output string
 # No changes should be made with result of the function, the result fully ready to be printed
