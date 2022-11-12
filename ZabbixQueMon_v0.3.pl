@@ -40,11 +40,14 @@ use constant {
 };
 
 sub main { 
+
+    #
     # Input: No
     # Output: No
     #
     # General high-level function for running the main scenario 
     # The function has no input and output and doesn't perform any data processing by itself, manages other functions instead 
+    #
     
     my %queues = get_queues_dict();
     my $output = get_output_data(%queues);
@@ -53,22 +56,25 @@ sub main {
 }
 
 sub get_queues_dict {
+
+    #
     # Input: No
     # Output: %hash {"process_name": <some_receiver_process>, "messages": <count_of_messages_in_queue>, ...}
     #
     # Returns hash, containing current state of Queues using template {"process_name": <some_receiver_process>, "messages": <count_of_messages_in_queue>}
     # When SVFE runs a few same processes in parallel - the messages count will be summarized using the process name
     # When the Receiver process is down the process name will be substituted by PROCESS_IS_DOWN constant
-
+    #
+    
     my %queues = ();
     my ($qid, $messages, $process_id, $process_name) = '';
     my @queues_set = split "\n", execute_command(COMMAND_GET_QUE);
 
     for(@queues_set) {
-        next if /^\D/; # Proceed to the next integration if the line doesn't start from numbers (no queue id recognized)
+        next if /^\D/; # Proceed to the next interation if the line doesn't start from numbers (no queue id recognized)
         ($qid, $messages) = split;
         $process_id = execute_command(COMMAND_GET_PID, $qid);
-        next if not $process_id; # Proceed to the next integration if the Process ID wasn't found using the "ps" command
+        next if not $process_id; # Proceed to the next interation if the Process ID wasn't found using the "ps" command
         $process_name = execute_command(COMMAND_GET_TAG, $process_id);
         $process_name =~  s/\s+//g;
         $process_name = PROCESS_IS_DOWN if not $process_name;
@@ -80,12 +86,15 @@ sub get_queues_dict {
 }
 
 sub get_output_data { 
+
+    #
     # Input: %hash {"process_name": <some_receiver_process>, "messages": <count_of_messages_in_queue>, ...}
     # Output: $string, ready to print without any changes
     #
     # Calculates and returns formatted final output string
     # No changes should be made to the result of the function, the result fully ready to be printed
     # When no running queues were found in the system the function will return an empty result using TEMPLATE_OUTPUT
+    #
     
     my $output;
     my @body = ();
@@ -103,18 +112,22 @@ sub get_output_data {
 }
 
 sub execute_command {
+
+    #
     # Input: @list of $strings, the first element is the command template, the others - are command params to be merged with the template
     # Output: $string, the command execution result
     #
     # Runs ssh commands using incoming command template and params
     # When the command has no external params the Params can be absent, the command will be run as is
     # For the merge of the Params with the Command template the sprintf function will be used 
-    my ($command_template, $params) = @_;
-    my $command = $params ? sprintf $command_template, $params : $command_template;
+    #
+    
+    my ($command_template, @params) = @_;
+    my $command = @params ? sprintf $command_template, @params : $command_template;
     
     chomp(my $result = qx($command)); # Execute the assembled command
 
     return $result;
 }
 
-main() # Entry point, the script work begin here
+main(); # Entry point, the script work begin here
