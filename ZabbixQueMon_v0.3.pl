@@ -39,39 +39,17 @@ use constant {
     COMMAND_GET_TAG => q(ps -ef | grep -v grep | awk '{print $2" "$8}' | grep %s | awk '{print $NF}'),
 };
 
-
-INIT{main()} # Entry point, the script start work here
-
-
-sub main { # Main
-    my %queues = get_queues();
-    my $output = parse_queues_dict(%queues);
-    say get_output_data();
-}
-
-# Calculates and returns formatted final output string
-# No changes should be made with result of the function, the result fully ready to be printed
-# When no running queues were found in the system the function will return empty result using TEMPLATE_OUTPUT
-sub parse_queues_dict { 
-    my $output;
-    my @body = ();
-    my %queues = shift;
-
-    for my $process (keys %queues) {
-        my $output_string = sprintf TEMPLATE_STRING, $process, $queues{$process};
-        push(@body, $output_string);
-    }
+sub main { 
+    my %queues = get_queues_dict();
+    my $output = get_output_data(%queues);
     
-    $output = join(',', @body);  # $output becomes a blank string if @body has no elements
-    $output = sprintf TEMPLATE_OUTPUT, $output;
-    
-    return $output;
+    say $output;
 }
 
 # Returns hash, containing current state of Queues using template {"process_name": <some_receiver_process>, "messages": <count_of_messages_in_queue>}
 # When SVFE runs a few same processes in parallel - the messages count will be summarized using process name
 # When the Receiver process is down the process name will be substituted by PROCESS_IS_DOWN constant
-sub get_queues {
+sub get_queues_dict {
     my %queues = ();
     my ($qid, $messages, $process_id, $process_name) = '';
     my @queues_set = split "\n", execute_command(COMMAND_GET_QUE);
@@ -91,6 +69,25 @@ sub get_queues {
     return %queues;
 }
 
+# Calculates and returns formatted final output string
+# No changes should be made with result of the function, the result fully ready to be printed
+# When no running queues were found in the system the function will return empty result using TEMPLATE_OUTPUT
+sub get_output_data { 
+    my $output;
+    my @body = ();
+    my %queues = shift;
+
+    for my $process (keys %queues) {
+        my $output_string = sprintf TEMPLATE_STRING, $process, $queues{$process};
+        push(@body, $output_string);
+    }
+    
+    $output = join(',', @body);  # $output becomes a blank string if @body has no elements
+    $output = sprintf TEMPLATE_OUTPUT, $output;
+    
+    return $output;
+}
+
 # Runs ssh commans using command template and param. Receives from zero up to one param for command template
 # When the command has no any external params the param argument can be absent, the command will be run as is
 # For the merge the Param into the Command template the sprintf function will be used 
@@ -102,3 +99,5 @@ sub execute_command {
 
     return $result;
 }
+
+main() # Entry point, the script begin here
