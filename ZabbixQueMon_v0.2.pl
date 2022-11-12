@@ -16,7 +16,7 @@ use 5.010;
 # Plain constant PROCESS_DOWN
 use constant PROCESS_IS_DOWN => q(PROCESS_DOWN);
 
-# Command to get all current Linux Queues. Returns Queue ID and count of current messages inside the Queue, separated by space
+# Command to get all current Linux Queues. Returns Queue ID and current count of messages inside the Queue, separated by space
 use constant COMMAND_GET_QUE => q(ipcs -q | awk '{print $2" "$6}' | grep -vi message);
 
 # Command to get the Receiver PID of specific Queue
