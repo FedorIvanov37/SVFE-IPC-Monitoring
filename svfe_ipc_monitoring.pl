@@ -11,7 +11,7 @@
 # Develop: Fedor Ivanov | Unlimint
 # Release: Nov 2022
 # 
-# See more in README.md file
+# See more, especially about IPC usage, in README.md file 
 #
 
 use strict;
