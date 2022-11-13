@@ -3,7 +3,7 @@
 ## SVFE IPC Message Queues Monitoring
 
 <details>
-  <summary>💡Glossary who is who</summary>
+  <summary>💡Glossary, who is who</summary>
 
 SV-specific terms, which will be used in this document defined below
   
@@ -235,7 +235,7 @@ Most common one of the following problems becomes the reason of the messages got
 
 ### Reaction criteria
 
-Table of the system malfunction levels when the IPC Queue has a pending messages
+Table of the system malfunction levels when the IPC Queue has a pending messages. 
 
 | Messages count |0-2 min  |2-5 min  | 5+ min  | Episodic |         
 | -------------- |---------|---------|---------|----------|
