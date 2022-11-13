@@ -178,12 +178,14 @@ I/O interactions perform through the standard Linux stream. The output data will
 ### About IPC
 
 
-IPC is inter-process communication. A kit of FIFO-channels for messaging between two application modules. Each queue has a sender and receiver processes. Sender and receiver is a kind of role of process during internal data exchange. 
+Short: IPC is inter-process communication. Internal data exchange, performing during processing the system tasks.
 
-SV-application is a group of independent modules, separated according to single-responsibility principle. The modules use message queues and shared memory segments for inter-process communication. Chain of internal modules connected to each other using the queues. A card transaction e.g. card purchase request is a message, which flows through the processes conveyor step-by-step, using queues as a transport.
+Internal SV IPC based on a kit of FIFO-channels for messaging between two application modules. The channels are called Message Queues, application modules are Processes. Each Message Queue has a Sender and Receiver Processes. Sender and Receiver is a kind of role of the Process during internal data exchange. 
+
+SV-application is a group of independent modules, separated according to single-responsibility principle. Add mentioned before these modules are called Processes. The Process uses Message Queues and shared memory segments for inter-process communication. Chain of Processes connected to each other using the Message Queues. A card transaction e.g. card purchase request is a message, which flows through the Processes conveyor step-by-step, using Message Queues as a transport.
 
 ![image](https://www.tutorialspoint.com/inter_process_communication/images/message_queue.jpg)
-> On the picture process A as a sender sends message to process B using Message Queue. Message Queue receives and transfers the message to the receiver process B. Process B receives the message as the receiver and makes its own part of work. After process B will finish the work the message will be sent forth using another Message Queue.
+> On the picture Process A as a Sender sends message to Process B using Message Queue. Message Queue receives and transfers the message to the Receiver Process B. Process B receives the message as the Receiver and makes its own part of work. When work of Process B will be finished the message will be sent forth using another Message Queue.
 
 
 The Message Queue has predefined buffer size, which cannot be expanded in runtime. In case when Message Queue has no space left to receive new message the sender process will stop to receive the the requests from previous sender in the chain and start to its Message Queue start to accumulate the message too. Such situation can lead to some serious system crush and difficulties with the problem determination.
