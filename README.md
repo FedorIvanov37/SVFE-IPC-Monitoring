@@ -1,6 +1,4 @@
-## :: SVFE IPC Message Queues Monitoring :: 
-
-Version: 1.0
+## SVFE IPC Message Queues Monitoring
 
 ![image](https://thumbs.gfycat.com/CheerySeparateGoldeneye-size_restricted.gif)
 
@@ -221,11 +219,9 @@ So, in case when you see the problem with stuck messages check the following:
 * Few last system changes which would increase system response time
 
 
+## About 
 
-
-
-## Author
-
+App version: 1.0
 
 Developed by Fedor Ivanov | Unlimint
 
