@@ -168,7 +168,7 @@ perl svfe_ipc_monitoring.pl;  # Will run even if you have read-only permissions
  * SVFE on the same server in a running state
  * Has been tested on Linux Centos only 
 
-## A small IPC introduction
+## IPC related information
 
 ### What is IPC
 
