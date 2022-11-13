@@ -29,7 +29,7 @@ The script has no specific run parameters, it runs directly from bash
 `$ perl svfe_ipc_monitoring.pl;`
 
 
-The queue data will be printed once after the script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
+The result will be printed once after the script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
 
 
 <details>
@@ -175,10 +175,10 @@ I/O interactions perform through the standard Linux stream. The output data will
 >```
 
 ### Special conditions
- * When SVFE runs a few same processes in parallel - the messages count will be summarized using the process name
- * When the Receiver process is down the process name will be substituted by PROCESS_IS_DOWN constant
- * Technically script can return empty list - [ ]. In case when SVFE doesn't run properly or server has no active queues at the moment
- * The queue data will be printed once after the script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
+ * When SVFE runs a few same Processes in parallel - the messages count will be summarized using the Process name
+ * When the Receiver is down the Process name will be substituted by PROCESS_IS_DOWN constant
+ * Technically Script can return empty list - [ ]. In case when SVFE doesn't run properly or server has no active queues at the moment
+ * The queue data will be printed once after the script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times
  
 ### System requirements
  * Perl 5; (!) Not compatible with Perl 6
@@ -193,9 +193,7 @@ I/O interactions perform through the standard Linux stream. The output data will
 
 >Short: IPC is inter-process communication. Internal data exchange, performing during processing the system tasks.
 
-Internal SV IPC based on a kit of FIFO-channels for messaging between two application modules. The channels are called Message Queues, application modules are Processes. Each Message Queue has a Sender and Receiver Processes. Sender and Receiver is a kind of role of the Process during internal data exchange. 
-
-SV-application is a group of independent modules, separated according to single-responsibility principle. Add mentioned before these modules are called Processes. The Process uses Message Queues and shared memory segments for inter-process communication. Chain of Processes connected to each other using the Message Queues. A card transaction e.g. card purchase request is a message, which flows through the Processes conveyor step-by-step, using Message Queues as a transport.
+Internal SV IPC based on a Message Queues, uses for messaging between two Processes. Each Message Queue has a Sender and Receiver Processes. Sender and Receiver is a kind of role of the Process during internal data exchange. 
 
 ![image](https://www.tutorialspoint.com/inter_process_communication/images/message_queue.jpg)
 > On the picture Process A as a Sender sends message to Process B using Message Queue. Message Queue receives and transfers the message to the Receiver Process B. Process B receives the message as the Receiver and makes its own part of work. When work of Process B will be finished the message will be sent forth using another Message Queue.
