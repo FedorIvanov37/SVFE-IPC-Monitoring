@@ -1,62 +1,140 @@
-## :: SV IPC Monitoring :: 
+## :: SVFE IPC Message Queues Monitoring :: 
 
 Version: 1.0
 
 ![image](https://thumbs.gfycat.com/CheerySeparateGoldeneye-size_restricted.gif)
 
 
-
-
 ###  Purpose 
+Get current status of IPC message queues used by SVFE application's processes, such as nwint, epayint, tcpcomms, etc. The script will return amount of messages in a waiting status and receiver's process name for each IPC message queue. 
 
-The script prints JSON-like list of dictionaries in Linux shell, informing about the current state of interprocess queues. In use by Zabbix monitoring system. The script runs by Zabbix agent in an endless cycle for online tracking interaction between SVFE processes
- 
-The queues data will be printed one time after each script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
+The script runs by Zabbix agent in an endless cycle for online tracking interaction between SVFE processes.
 
-### The script running and I/O
+### Usage 
 
 The script has no run parameters, you can run it as is 
 ```bash
-$ perl script.pl;
+perl svfe_ipc_monitoring.pl;
 ```
 
-All I/O interactions make through a standard Linux I/O stream. The output data will always be sent to the first stream - the standard stdout stream.
+<details>
+  <summary>Result example</summary>
 
-Be aware: direct run like "./script.pl;" requires permissions to execute the script file. At the same time if you are running the script through Perl like "perl ./script.pl;" read permission will be enough to run the script.
+  ```bash
+  smartfe@svfe:/> perl svfe_ipc_monitoring.pl;
+[
 
-
-```bash
-$ ./script.pl;        # Will run only if you have execution permissions
-```
-```bash
-$ perl ./script.pl;   # Will run even if you have read-only permissions
-```
-
-### Output example and explanation
-
-```js
-[                                    // The JSON-like list 
-  {                                  // Of individual dictionaries for each process
-    "process_name": "tcpcomms",      
-    "message": 110                   // tcpcomms doesn't look good
+  {
+    "process_name": "tcpcomms",
+    "message": 0
   },
   {
-    "process_name": "PROCESS_DOWN",  // Some processes are down and accumulating the Queues
-    "message": 54
+    "process_name": "asmssrv",
+    "message": 0
   },
   {
-   "process_name": "timer00",        // In the same time the timer looks fine
-   "message": 0
- },
- // More dictionaries
+    "process_name": "timer00",
+    "message": 0
+  },
+  {
+    "process_name": "acq_fraudmon",
+    "message": 0
+  },
+  {
+    "process_name": "epayint",
+    "message": 0
+  },
+  {
+    "process_name": "hsm_mcp",
+    "message": 0
+  },
+  {
+    "process_name": "sms_sender",
+    "message": 0
+  },
+  {
+    "process_name": "nwint00",
+    "message": 0
+  },
+  {
+    "process_name": "saf_list_mgr",
+    "message": 0
+  },
+  {
+    "process_name": "atmswdist",
+    "message": 0
+  },
+  {
+    "process_name": "stdauth",
+    "message": 2
+  },
+  {
+    "process_name": "hostspec1int",
+    "message": 0
+  },
+  {
+    "process_name": "tcpgate_mcp",
+    "message": 0
+  },
+  {
+    "process_name": "voice_auth",
+    "message": 0
+  },
+  {
+    "process_name": "crout00",
+    "message": 0
+  },
+  {
+    "process_name": "txrout",
+    "message": 0
+  },
+  {
+    "process_name": "splitint",
+    "message": 0
+  },
+  {
+    "process_name": "auth_notif_sender",
+    "message": 0
+  },
+  {
+    "process_name": "hstint",
+    "message": 0
+  },
+  {
+    "process_name": "acqint",
+    "message": 0
+  },
+  {
+    "process_name": "mcp",
+    "message": 0
+  },
+  {
+    "process_name": "acqhost_int",
+    "message": 0
+  }
 ]
+
+  ```
+</details>
+
+All I/O interactions go through the standard Linux I/O stream. The output data will always be sent to stdout.
+
+Be aware: direct run like "./svfe_ipc_monitoring.pl;" requires permissions to execute the script file. At the same time if you are running the script through Perl like "perl ./svfe_ipc_monitoring.pl;" read permission will be enough to run the script.
+
+
+```bash
+svfe_ipc_monitoring.pl;        # Will run only if you have execution permissions
 ```
+```bash
+perl svfe_ipc_monitoring.pl;   # Will run even if you have read-only permissions
+```
+
 
 ### Special conditions
  * When SVFE runs a few same processes in parallel - the messages count will be summarized using the process name
  * When the Receiver process is down the process name will be substituted by PROCESS_IS_DOWN constant
  * Technically script can return empty list - [ ]. In case when SVFE doesn't run properly or server has no active queues at the moment
-
+ * The queues data will be printed one time after each script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
 ### System requirements
  * Perl 5; (!) Not compatible with Perl 6
  * Linux server with available shell commands: ipcs, awk, grep, ps
@@ -64,3 +142,67 @@ $ perl ./script.pl;   # Will run even if you have read-only permissions
  * Has been tested on Linux Centos only 
 
 
+## A small IPC introduction
+
+### What is IPC
+
+IPC is inter-process communication. A kit of FIFO-channels for messaging between two or more application modules. SV-application is a group of weak-connected modules, which use message queues and shared memory segments for inter-process communication. Chain of internal processes connected to each other using the queue. A card transaction e.g. purchase is a message, which follows through the process conveyor step-by-step.
+
+![image](https://www.tutorialspoint.com/inter_process_communication/images/message_queue.jpg)
+
+
+See more about IPC here: 
+
+* https://en.wikipedia.org/wiki/Inter-process_communication
+* https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_message_queues.htm
+
+### When should we react on messages
+
+⚠️ Important note: Once the queue begins to accumulate the pending message at any time 24/7 is required to inform the SV Technical Support engineer about the problem. Analysis has to be done on the application level first.
+
+Table of the reaction levels when the IPC Queue has a pending messages
+
+| Messages count |0-2 min  |2-5 min  | 5+ min  | Episodic |         
+| -------------- |---------|---------|---------|----------|
+|         0-10   | ✅      | ✅     | ✅      | ✅      |
+|         10-50  | ⚠️      | 🔴     | 🔴      | ⚠️      |
+|         50+    | 🔴      | 🔴     | 🔴      | 🔴      |
+
+
+✅ - OK, not a problem
+
+⚠️ - WARNING, need to check the system, probably something goes wrong
+
+🔴 - CRITICAL, need to react immediately
+
+
+### What to check when the messages are getting stuck in the Queue
+
+Cause of the queues accumulation can be many different problems. In general, messages accumulate in queues because the SVFE application process waits for some event or works too slowly and cannot get new messages to process. Mostly SV by itself is not the root cause of the problem.
+
+Usually one of the following problems becomes the reason of the messages got stuck:
+
+* High load of the system, out of memory or other system resources
+* Long waiting of Database
+* Network interruptions
+* Internal problem with the application process
+
+So, in case when you see the problem with stuck messages check the following:
+
+* System resource availability - RAM, CPU, etc
+* Database availability and response time, running jobs, deadlocks
+* Network connections and response time
+* Few last system changes which would increase system response time
+
+
+
+
+
+## Author
+
+
+Developed by Fedor Ivanov | Unlimint
+
+Released in Nov 2022
+
+In case of any question fill free to contact Fedor Ivanov. Your feedback and suggestions are general drivers of the monitoring system evolution.
