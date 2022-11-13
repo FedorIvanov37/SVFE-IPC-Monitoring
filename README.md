@@ -1,7 +1,5 @@
 ## SVFE IPC Message Queues Monitoring
-
-![image](https://thumbs.gfycat.com/CheerySeparateGoldeneye-size_restricted.gif)
-
+![image](https://cs4.pikabu.ru/post_img/2014/03/28/10/1396020816_2021692751.gif?_gl=1*u9yyqr*_ga*MzIwMTE5OTk2LjE2NjM1MDM5NjE.)
 
 ###  Purpose 
 Get current status of inter-process communication (IPC) message queues used by SVFE application's processes, such as nwint, epayint, tcpcomms, etc. The script will return amount of messages in a waiting status and receiver's process name for each IPC message queue. 
