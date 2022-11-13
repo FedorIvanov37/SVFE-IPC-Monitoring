@@ -182,7 +182,10 @@ IPC is inter-process communication. A kit of FIFO-channels for messaging between
 SV-application is a group of independent modules, separated according to single-responsibility principle. The modules use message queues and shared memory segments for inter-process communication. Chain of internal modules connected to each other using the queues. A card transaction e.g. card purchase request is a message, which flows through the processes conveyor step-by-step, using queues as a transport.
 
 ![image](https://www.tutorialspoint.com/inter_process_communication/images/message_queue.jpg)
+> On the picture process A a sender sends message to process B using Message Queue. Message Queue transfers and process B receives the message as the receiver.
 
+
+The Message Queue has predefined buffer size, which cannot be expanded in runtime. In case when Message Queue has no space left to receive new message the sender process will stop to receive the messages from previous process in the chain. Such situation can lead to serious system crush and difficulties with the problem determination.
 
 See more about IPC here: 
 
