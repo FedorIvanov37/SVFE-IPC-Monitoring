@@ -2,12 +2,17 @@
 #
 # :: SVFE IPC MONITORING ::
 #
-# Purpose: Get current status of IPC message queues for SVFE application's processes, such as nwint, epayint, tcpcomms, etc. 
-#          This script will return amount of messages in a waiting status for each process. 
+# Purpose: Get current status of IPC message queues used by 
+#          SVFE application's processes, such as nwint, epayint, tcpcomms, etc. 
+#
+#          This script will return amount of messages in a waiting status and 
+#          receiver's process name for each IPC message queue. 
+#
+# Version: v1.0
 # Develop: Fedor Ivanov | Unlimint
 # Release: Nov 2022
 # 
-# See more in README.md
+# See more in README.md file
 #
 
 use strict;
