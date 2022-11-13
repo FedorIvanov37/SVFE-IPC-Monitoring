@@ -224,7 +224,7 @@ So, in case when you see the problem with stuck messages check the following:
 
 ## About 
 
-App version: 1.0
+App version: v1.0
 
 Developed by Fedor Ivanov | Unlimint
 
