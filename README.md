@@ -236,10 +236,12 @@ In case when you see the problem with stuck messages check the following:
 
 ## About 
 
-App version: v1.0
+>In case of any question fill free to [contact](f.ivanov@unlimint.com) author directly. Your feedback and suggestions are general drivers of the monitoring system evolution.
+
 
 Developed by Fedor Ivanov | Unlimint
 
+Version: v1.0
+
 Released in Nov 2022
 
-In case of any question fill free to contact Fedor Ivanov. Your feedback and suggestions are general drivers of the monitoring system evolution.
