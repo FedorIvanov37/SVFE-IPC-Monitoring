@@ -176,7 +176,12 @@ I/O interactions perform through the standard Linux stream. The output data will
 
 ## IPC related information
 
-IPC is inter-process communication. A kit of FIFO-channels for messaging between two or more application modules. SV-application is a group of weak-connected modules, which use message queues and shared memory segments for inter-process communication. Chain of internal processes connected to each other using the queue. A card transaction e.g. purchase is a message, which follows through the process conveyor step-by-step.
+### About IPC
+
+
+IPC is inter-process communication. A kit of FIFO-channels for messaging between two application modules. Each queue has a sender and receiver processes. Sender and receiver is a kind of role of process during internal data exchange. 
+
+SV-application is a group of independent modules, separated according to single-responsibility principle. The modules use message queues and shared memory segments for inter-process communication. Chain of internal modules connected to each other using the queues. A card transaction e.g. card purchase request is a message, which flows through the processes conveyor step-by-step, using queues as a transport.
 
 ![image](https://www.tutorialspoint.com/inter_process_communication/images/message_queue.jpg)
 
@@ -222,11 +227,11 @@ Table of the system malfunction levels when the IPC Queue has a pending messages
 |         50+    | 🔴      | 🔴      | 🔴      | 🔴       |
 
 
-🟢 - OK, most probably we have no problem.
+🟢 OK, most probably we have no problem.
 
-🟡 - WARNING, need to check the system, probably something goes wrong.
+🟡 WARNING, need to check the system, probably something goes wrong.
 
-🔴 - CRITICAL, need to react immediately. Most probably we currently have a system malfunction.
+🔴 CRITICAL, need to react immediately. Most probably we currently have a system malfunction.
 
 ### Recovery plan
 
