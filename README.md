@@ -3,20 +3,20 @@
 ## SVFE IPC Message Queues Monitoring
 
 <details>
-  <summary>💡 Glossary who is who</summary>
+  <summary>💡Glossary who is who</summary>
 
-An explanation of SV-specific terms, which will be used in this document
+SV-specific terms, which will be used in this document defined below
   
-| Term          | Description                                                                                     |
-|---------------|----------------------------------------------------------------------------------------------   |
-| SVFE          | SmartVista FrontEnd. Card payments processing system which process acquiring and using requests |
-| Process       | SVFE application module. SVFE has over 20 independent Processes, separated by single-responsibility principle |
-| Message Queue | FIFO-channel providing transport between two Processes                                          |                                                                                                              
-| Message       | Transaction request or response on the way of processing                                        |
-| IPC           | Inter-process communication. Internal data exchange flow                                        |
-| Script        | svfe_ipc_monitoring.pl, described in this file                                                  |
-| Sender        | Process, sending the Message using Message Queue                                                |
-| Receiver      | Process, receives the Message using Message Queue                                               |
+| Term          | Description                                                                                       |
+|---------------|----------------------------------------------------------------------------------------------     |
+| SVFE          | SmartVista FrontEnd. Card payments processing system which process acquiring and using requests   |
+| Process       | SVFE application module. SVFE has over 20 Processes, separated by single-responsibility principle |
+| Message Queue | FIFO-channel providing transport between two Processes                                            |                                                                                                              
+| Message       | Transaction request or response on the way of processing                                          |
+| IPC           | Inter-process communication. Internal data exchange flow                                          |
+| Script        | svfe_ipc_monitoring.pl, described in this file                                                    |
+| Sender        | Process, sending the Message using Message Queue                                                  |
+| Receiver      | Process, receives the Message using Message Queue                                                 |
 
 </details>
 
