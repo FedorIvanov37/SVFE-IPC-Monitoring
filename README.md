@@ -133,7 +133,7 @@ perl svfe_ipc_monitoring.pl;
     "message": 54
   },
   {
-   "process_name": "timer00",        // In the same time the timer looks fine
+   "process_name": "timer00",    // In the same time the timer looks fine
    "message": 0
  },
  ...
@@ -143,7 +143,8 @@ perl svfe_ipc_monitoring.pl;
 ```
 </details>
 
-All I/O interactions go through the standard Linux I/O stream. The output data will always be sent to stdout.
+I/O interactions perform through the standard Linux stream. The output data will be sent to stdout.
+
 
 Be aware: direct run like "./svfe_ipc_monitoring.pl;" requires permissions to execute the script file. At the same time if you are running the script through Perl like "perl ./svfe_ipc_monitoring.pl;" read permission will be enough to run the script.
 
