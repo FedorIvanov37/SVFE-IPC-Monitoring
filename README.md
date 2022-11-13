@@ -188,21 +188,23 @@ SV-application is a group of independent modules, separated according to single-
 
 See more about IPC here: 
 
-* [Wikipedia article](https://en.wikipedia.org/wiki/Inter-process_communication)
-* [Tutorials point article](https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_message_queues.htm)
+* [Wikipedia IPC article](https://en.wikipedia.org/wiki/Inter-process_communication)
+* [Tutorials point IPC article](https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_message_queues.htm)
+* [Wikipedia Message Queue article] (https://en.m.wikipedia.org/wiki/Message_queue)
 
-### Typical problems with IPC
+
+### Common reasons for problems with IPC
 
 Cause of the queues accumulation can be many different problems. In general, messages accumulate in queues because the SVFE application process waits for some event or works too slowly and cannot get new messages to process. Mostly SV by itself is not the root cause of the problem.
 
-Usually one of the following problems becomes the reason of the messages got stuck:
+Most common one of the following problems becomes the reason of the messages got stuck:
 
 * High load of the system, out of memory or other system resources
 * Long waiting of Database
 * Network interruptions
 * Internal problem with the application process
 
-### Typical symptoms for IPC problems
+### System behaviour during problems with IPC 
 
 * Many unexpected declines on production
 * SV does not answer PSP in time. On the PSP side transactions are getting the decline "Communication problem"
@@ -238,10 +240,12 @@ Table of the system malfunction levels when the IPC Queue has a pending messages
 In case when you see the problem with stuck messages check the following:
 
 * Transactions approval rate. First we need to determine is the problem still active or not.
+* Often specifically high load of system resources is a reason for the IPC problems. Try to understand which part of system work slower then usual.
 * System resource availability - RAM, CPU, etc
 * Database availability and response time, running jobs, deadlocks
 * Network connections and response time
 * Few last system changes which would increase system response time
+
 
 ## About 
 
