@@ -1,9 +1,14 @@
 #!/usr/bin/perl
 #
-# :: SVFE IPC Monitoring for Zabbix ::
+# :: SVFE IPC MONITORING ::
 #
-# Version v1.0
+# Purpose: Get current status of IPC message queues for SVFE application's processes, such as nwint, epayint, tcpcomms, etc. 
+#          This script will return amount of messages in a waiting status for each process. 
+# Develop: Fedor Ivanov | Unlimint
+# Release: Nov 2022
 # 
+# See more in README.md
+#
 
 use strict;
 use warnings;
