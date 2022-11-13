@@ -1,11 +1,9 @@
 #!/usr/bin/perl
-#gin README.m
-
-## :: SVFE Queues Monitoring for Zabbix ::
-
+#
+# :: SVFE IPC Monitoring for Zabbix ::
+#
 # Version v1.0
-
-
+# 
 
 use strict;
 use warnings;
