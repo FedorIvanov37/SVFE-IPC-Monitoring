@@ -239,6 +239,10 @@ In case when you see the problem with stuck messages check the following:
 
 ## About 
 
+>👋 In case of any question fill free to [contact](mailto:f.ivanov@unlimint.com) author directly. 
+>
+>Your feedback and suggestions are general drivers of the monitoring system evolution.
+
 ```
 SVFE IPC Message Queues Monitoring v1.0
  
@@ -246,8 +250,3 @@ Written by Fedor Ivanov | Unlimint
 
 Released in Nov 2022
 ```
-
-👋 In case of any question fill free to [contact](mailto:f.ivanov@unlimint.com) author directly. 
-
-Your feedback and suggestions are general drivers of the monitoring system evolution.
-
