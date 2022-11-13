@@ -10,10 +10,13 @@ The script runs by Zabbix agent in an endless cycle for online tracking interact
 
 ### Usage 
 
-The script has no run parameters, you can run it as is 
+The script has no run parameters, you can run it as is.
 ```bash
 perl svfe_ipc_monitoring.pl;
 ```
+
+The queue data will be printed once after the script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
+
 
 <details>
   <summary>Result example</summary>
@@ -143,7 +146,6 @@ perl svfe_ipc_monitoring.pl;
 
 I/O interactions perform through the standard Linux stream. The output data will be sent to stdout.
 
-
 Be aware: direct run like "./svfe_ipc_monitoring.pl;" requires permissions to execute the script file. At the same time if you are running the script through Perl like "perl ./svfe_ipc_monitoring.pl;" read permission will be enough to run the script.
 
 
@@ -159,7 +161,8 @@ perl svfe_ipc_monitoring.pl;   # Will run even if you have read-only permissions
  * When SVFE runs a few same processes in parallel - the messages count will be summarized using the process name
  * When the Receiver process is down the process name will be substituted by PROCESS_IS_DOWN constant
  * Technically script can return empty list - [ ]. In case when SVFE doesn't run properly or server has no active queues at the moment
- * The queues data will be printed one time after each script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
+ * The queue data will be printed once after the script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
+ 
 ### System requirements
  * Perl 5; (!) Not compatible with Perl 6
  * Linux server with available shell commands: ipcs, awk, grep, ps
