@@ -238,12 +238,11 @@ In case when you see the problem with stuck messages check the following:
 
 ```
 SVFE IPC Message Queues Monitoring v1.0
-
-Developed by Fedor Ivanov | Unlimint
+ 
+Written by Fedor Ivanov | Unlimint
 
 Released in Nov 2022
 ```
-
 
 
 >:wave:
