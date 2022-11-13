@@ -117,6 +117,32 @@ perl svfe_ipc_monitoring.pl;
   ```
 </details>
 
+<details>
+  <summary>Analysing the result</summary>
+
+  Below you can find a hypothetical response to the monitoring script with the data analysis example
+
+```bash
+[                                // The JSON-like list 
+  {                              // Of individual dictionaries for each process
+    "process_name": "tcpcomms",      
+    "message": 110               // tcpcomms doesn't look good
+  },
+  {
+    "process_name": "PROCESS_DOWN",  // Some processes are down and accumulating the Queues
+    "message": 54
+  },
+  {
+   "process_name": "timer00",    // In the same time the timer looks fine
+   "message": 0
+ },
+ ...
+ ...
+ // More dictionaries
+]
+```
+</details>
+
 All I/O interactions go through the standard Linux I/O stream. The output data will always be sent to stdout.
 
 Be aware: direct run like "./svfe_ipc_monitoring.pl;" requires permissions to execute the script file. At the same time if you are running the script through Perl like "perl ./svfe_ipc_monitoring.pl;" read permission will be enough to run the script.
@@ -140,7 +166,6 @@ perl svfe_ipc_monitoring.pl;   # Will run even if you have read-only permissions
  * Linux server with available shell commands: ipcs, awk, grep, ps
  * SVFE on the same server in a running state
  * Has been tested on Linux Centos only 
-
 
 ## A small IPC introduction
 
