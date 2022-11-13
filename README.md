@@ -172,8 +172,6 @@ perl svfe_ipc_monitoring.pl;  # Will run even if you have read-only permissions
 
 ## IPC related information
 
-### What is IPC
-
 IPC is inter-process communication. A kit of FIFO-channels for messaging between two or more application modules. SV-application is a group of weak-connected modules, which use message queues and shared memory segments for inter-process communication. Chain of internal processes connected to each other using the queue. A card transaction e.g. purchase is a message, which follows through the process conveyor step-by-step.
 
 ![image](https://www.tutorialspoint.com/inter_process_communication/images/message_queue.jpg)
@@ -184,29 +182,7 @@ See more about IPC here:
 * [Wikipedia article](https://en.wikipedia.org/wiki/Inter-process_communication)
 * [Tutorials point article](https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_message_queues.htm)
 
-### When should we react on messages
-
->⚠️ Important note
->
->Once the queue begins to accumulate the pending messages at any time 24/7 it is most important to warn SV Technical Support Engineer about the problem. Analysis has to be done on the application level first.
-
-Table of the reaction levels when the IPC Queue has a pending messages
-
-| Messages count |0-2 min  |2-5 min  | 5+ min  | Episodic |         
-| -------------- |---------|---------|---------|----------|
-|         0-10   | 🟢      | 🟢     | 🟡      | 🟡      |
-|         10-50  | 🟡      | 🔴     | 🔴      | 🟡      |
-|         50+    | 🔴      | 🔴     | 🔴      | 🔴      |
-
-
-🟢 - OK, most probably we have no problem
-
-🟡 - WARNING, need to check the system, probably something goes wrong
-
-🔴 - CRITICAL, need to react immediately
-
-
-### What to check when the messages are getting stuck in the Queue
+### Typical problems with IPC
 
 Cause of the queues accumulation can be many different problems. In general, messages accumulate in queues because the SVFE application process waits for some event or works too slowly and cannot get new messages to process. Mostly SV by itself is not the root cause of the problem.
 
@@ -217,14 +193,40 @@ Usually one of the following problems becomes the reason of the messages got stu
 * Network interruptions
 * Internal problem with the application process
 
-Typical symptoms for IPC problems are:
+### Typical symptoms for IPC problems
 
 * Many unexpected declines on production
 * SV does not answer PSP in time. On the PSP side transactions are getting the decline "Communication problem"
 * SV answer with decline code 68 Timeout (F39 in logs = 68)
 * Abnormal network activity, SV don't answer long time, then put batch of responses in short period
 
-So, in case when you see the problem with stuck messages check the following:
+
+## Reaction
+
+>⚠️ Important note
+>
+>Once the queue begins to accumulate the pending messages at any time 24/7 it is most important to warn SV Technical Support Engineer about the problem. Analysis has to be done on the application level first.
+
+### Reaction criteria
+
+Table of the system malfunction levels when the IPC Queue has a pending messages
+
+| Messages count |0-2 min  |2-5 min  | 5+ min  | Episodic |         
+| -------------- |---------|---------|---------|----------|
+|         0-10   | 🟢      | 🟢      | 🟡      | 🟡       |
+|         10-50  | 🟡      | 🔴      | 🔴      | 🟡       |
+|         50+    | 🔴      | 🔴      | 🔴      | 🔴       |
+
+
+🟢 - OK, most probably we have no problem.
+
+🟡 - WARNING, need to check the system, probably something goes wrong.
+
+🔴 - CRITICAL, need to react immediately. Most probably we currently have a system malfunction.
+
+### Recovery plan
+
+In case when you see the problem with stuck messages check the following:
 
 * Transactions approval rate. First we need to determine is the problem still active or not.
 * System resource availability - RAM, CPU, etc
