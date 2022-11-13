@@ -4,9 +4,12 @@
 
 
 ###  Purpose 
-Get current status of IPC message queues used by SVFE application's processes, such as nwint, epayint, tcpcomms, etc. The script will return amount of messages in a waiting status and receiver's process name for each IPC message queue. 
+Get current status of inter-process communication (IPC) message queues used by SVFE application's processes, such as nwint, epayint, tcpcomms, etc. The script will return amount of messages in a waiting status and receiver's process name for each IPC message queue. 
 
 The script runs by Zabbix agent in an endless cycle for online tracking interaction between SVFE processes.
+
+If you don't know what the IPC actually mean - go to IPC related info first.
+
 
 ### Usage 
 
