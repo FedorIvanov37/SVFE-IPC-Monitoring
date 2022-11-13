@@ -193,13 +193,12 @@ I/O interactions perform through the standard Linux stream. The output data will
 
 >Short: IPC is inter-process communication. Internal data exchange, performing during processing the system tasks.
 
-Internal SV IPC based on a Message Queues, uses for messaging between two Processes. Each Message Queue has a Sender and Receiver Processes. Sender and Receiver is a kind of role of the Process during internal data exchange. 
+Internal SV IPC is based on a Message Queues, Queues used for messaging between two Processes. Each Message Queue has a Sender and Receiver Processes. Sender and Receiver is a kind of role of the Process during internal data exchange. 
 
 ![image](https://www.tutorialspoint.com/inter_process_communication/images/message_queue.jpg)
-> On the picture Process A as a Sender sends message to Process B using Message Queue. Message Queue receives and transfers the message to the Receiver Process B. Process B receives the message as the Receiver and makes its own part of work. When work of Process B will be finished the message will be sent forth using another Message Queue.
+> On the picture Process A as a Sender sends Message to Process B using Message Queue. Message Queue receives and transfers the Message to the Receiver Process B. Process B receives the Message as the Receiver and makes its own part of work. When work of Process B will be finished the Message will be sent forth using another Message Queue.
 
-
-The Message Queue has predefined buffer size, which cannot be expanded in runtime. In case when Message Queue has no space left to receive new message the sender process will stop to receive the the requests from previous sender in the chain and start to its Message Queue start to accumulate the message too. Such situation can lead to some serious system crush and difficulties with the problem determination.
+The Message Queue has predefined buffer size, which cannot be expanded in runtime. In case when Message Queue has no space left to receive new Message the Sender will stop to receive the the requests from previous Sender in the chain and its Message Queue will start to accumulate the message too. Such situation can lead to some serious system crush and difficulties with the problem determination.
 
 See more about IPC here: 
 
