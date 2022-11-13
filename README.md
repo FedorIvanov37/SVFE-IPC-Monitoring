@@ -190,7 +190,7 @@ See more about IPC here:
 
 * [Wikipedia IPC article](https://en.wikipedia.org/wiki/Inter-process_communication)
 * [Tutorials point IPC article](https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_message_queues.htm)
-* [Wikipedia Message Queue article] (https://en.m.wikipedia.org/wiki/Message_queue)
+* [Wikipedia Message Queue article](https://en.m.wikipedia.org/wiki/Message_queue)
 
 
 ### Common reasons for problems with IPC
