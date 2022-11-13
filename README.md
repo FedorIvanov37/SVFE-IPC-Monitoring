@@ -3,9 +3,12 @@
 ## SVFE IPC Message Queues Monitoring
 
 <details>
+
+
   <summary>💡Glossary, who is who</summary>
 
-SV-specific terms, which will be used in this document defined below
+
+SV-specific terms, used in this document defined below
   
 | Term          | Description                                                                                       |
 |---------------|----------------------------------------------------------------------------------------------     |
@@ -225,7 +228,7 @@ Most common one of the following problems becomes the reason of the messages got
 * SV does not answer PSP in time. On the PSP side transactions are getting the decline "Communication problem"
 * SV answer with decline code 68 Timeout (F39 in logs = 68)
 * Abnormal network activity, SV don't answer long time, then put batch of responses in short period
-
+* Command `$ipcs -q`, executed on SF server
 
 ## Reaction
 
