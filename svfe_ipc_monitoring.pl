@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# IPC queues monitoring for SmartVista FrontEnd
+# IPC Message Queues Monitoring for SVFE
 #
 # Purpose: Get current status of IPC message queues used by 
 #          SVFE application's processes, such as nwint, epayint, tcpcomms, etc. 
