@@ -152,14 +152,14 @@ I/O interactions perform through the standard Linux stream. The output data will
 >
 > Direct run like `$ svfe_ipc_monitoring.pl;` requires permissions to execute the script file. 
 > At the same time if you are running the script through Perl like `$ perl svfe_ipc_monitoring.pl;` read permission will be enough to run the script.
-
-```bash 
-$ svfe_ipc_monitoring.pl;  # Will run only if you have execution permissions
-```
-
-```bash
-$ perl svfe_ipc_monitoring.pl;  # Will run even if you have read-only permissions
-```
+>
+>```bash 
+>$ svfe_ipc_monitoring.pl;  # Will run only if you have execution permissions
+>```
+>
+>```bash
+>$ perl svfe_ipc_monitoring.pl;  # Will run even if you have read-only permissions
+>```
 
 ### Special conditions
  * When SVFE runs a few same processes in parallel - the messages count will be summarized using the process name
