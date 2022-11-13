@@ -3,20 +3,25 @@
 ## SVFE IPC Message Queues Monitoring
 
 ### Glossary, who is who
+
+<details>
+  <summary>💡 Glossary</summary>
+  
 | Term          | Description                                                                                     |
-----------------|----------------------------------------------------------------------------------------------   |
+|---------------|----------------------------------------------------------------------------------------------   |
 | SVFE          | SmartVista FrontEnd. Card payments processing system which process acquiring and using requests |
 | Process       | SVFE application module. SVFE has over 20 independent Processes, separated by single-responsibility principle |
-| Message Queue | FIFO-channel providing transport between two Processes                                          |                                                                                            |                    
+| Message Queue | FIFO-channel providing transport between two Processes                                          |                                                                                                              
 | Message       | Transaction request or response on the way of processing                                        |
 | IPC           | Inter-process communication. Internal data exchange flow                                        |
 | Script        | svfe_ipc_monitoring.pl, described in this file                                                  |
 | Sender        | Process, sending the Message using Message Queue                                                |
 | Receiver      | Process, receives the Message using Message Queue                                               |
 
+</details>
 
 ### Script purpose 
-The script will return JSON-like representation containing count of pending Messages and Receiver's Process name for each Message Queue. 
+The script returns JSON-like representation containing count of pending Messages and Receiver's Process name for each Message Queue. 
 
 The Script is executed by Zabbix agent for online tracking interaction between SVFE Processes.
 
@@ -29,8 +34,6 @@ The script has no specific run parameters, it runs directly from bash
 `$ perl svfe_ipc_monitoring.pl;`
 
 The result will be printed once after the script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to repeat the script execution.
-
-
 <details>
   <summary>Result example</summary>
 
