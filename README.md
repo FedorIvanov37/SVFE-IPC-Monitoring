@@ -8,8 +8,7 @@ Get current status of inter-process communication (IPC) message queues used by S
 
 The script runs by Zabbix agent in an endless cycle for online tracking interaction between SVFE processes.
 
-If you don't know what the IPC actually mean - go to IPC related info first.
-
+If you don't know what the IPC actually mean - go to [IPC related info](https://github.com/FedorIvanov37/SVFE-IPC-Monitoring/blob/main/README.md#ipc-related-information) first.
 
 ### Usage 
 
