@@ -10,9 +10,9 @@ The script runs by Zabbix agent in an endless cycle for online tracking interact
 
 ### Usage 
 
-The script has no run parameters, you can run it as is
+The script has no specific run parameters, it runs directly from bash
 
-`perl svfe_ipc_monitoring.pl;`
+`$ perl svfe_ipc_monitoring.pl;`
 
 
 The queue data will be printed once after the script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
@@ -184,7 +184,9 @@ See more about IPC here:
 
 ### When should we react on messages
 
-⚠️ Important note: Once the queue begins to accumulate the pending message at any time 24/7 is required to inform the SV Technical Support engineer about the problem. Analysis has to be done on the application level first.
+>⚠️ Important note
+>
+>Once the queue begins to accumulate the pending messages at any time 24/7 it is most important to warn SV Technical Support Engineer about the problem. Analysis has to be done on the application level first.
 
 Table of the reaction levels when the IPC Queue has a pending messages
 
