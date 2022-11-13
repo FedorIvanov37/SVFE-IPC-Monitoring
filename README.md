@@ -3,16 +3,20 @@
 ## SVFE IPC Message Queues Monitoring
 
 ### Glossary, who is who
+| Term          | Description                                                                                     |
+----------------|----------------------------------------------------------------------------------------------   |
+| SVFE          | SmartVista FrontEnd. Card payments processing system which process acquiring and using requests |
+| Process       | SVFE application module. SVFE has over 20 independent Processes, separated by single-responsibility principle |
+| Message Queue | FIFO-channel providing transport between two Processes                                          |                                                                                            |                    
+| Message       | Transaction request or response on the way of processing                                        |
+| IPC           | Inter-process communication. Internal data exchange flow                                        |
+| Script        | svfe_ipc_monitoring.pl, described in this file                                                  |
+| Sender        | Process, sending the Message using Message Queue                                                |
+| Receiver      | Process, receives the Message using Message Queue                                               |
 
-* SVFE - SmartVista FrontEnd. Card payment module which processes acquiring and using requests.
-* Process - SVFE application module. SVFE has over 20 independent Processes, separated by single-responsibility principle.
-* Message Queue - FIFO-channel providing transport between two Processes.
-* IPC - inter-process communication. Internal data exchange flow.
-* Message - transaction request or response on the way if processing.
-* Script - SVFE IPC Message Queues Monitoring, this file
 
-###  Purpose 
-Get current status of IPC Message Queues used by SVFE application's Processes, such as nwint, epayint, tcpcomms, etc. The script will return amount of messages in a waiting status and Receiver's process name for each Message Queue. 
+### Script purpose 
+Get current status of IPC Message Queues used by SVFE application's Processes, such as nwint, epayint, tcpcomms, etc. The script will return count of pending messages Receiver's process name for each Message Queue. 
 
 The Script runs by Zabbix agent in an endless cycle for online tracking interaction between SVFE processes.
 
