@@ -179,8 +179,8 @@ IPC is inter-process communication. A kit of FIFO-channels for messaging between
 
 See more about IPC here: 
 
-* https://en.wikipedia.org/wiki/Inter-process_communication
-* https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_message_queues.htm
+* [Wikipedia article](https://en.wikipedia.org/wiki/Inter-process_communication)
+* [Tutorials point article](https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_message_queues.htm)
 
 ### When should we react on messages
 
