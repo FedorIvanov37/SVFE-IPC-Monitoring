@@ -16,7 +16,7 @@
 
 
 ### Script purpose 
-Get current status of IPC Message Queues used by SVFE application's Processes, such as nwint, epayint, tcpcomms, etc. The script will return count of pending messages Receiver's process name for each Message Queue. 
+The script will return JSON-like representation with count of pending messages in Message Queues and Receiver's Process name for each Message Queue. 
 
 The Script runs by Zabbix agent in an endless cycle for online tracking interaction between SVFE processes.
 
