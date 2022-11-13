@@ -236,7 +236,7 @@ In case when you see the problem with stuck messages check the following:
 
 ## About 
 
->In case of any question fill free to [contact](mailto:f.ivanov@unlimint.com) author directly. Your feedback and suggestions are general drivers of the monitoring system evolution.
+>:wave:In case of any question fill free to [contact](mailto:f.ivanov@unlimint.com) author directly. Your feedback and suggestions are general drivers of the monitoring system evolution.
 
 
 Developed by Fedor Ivanov | Unlimint
