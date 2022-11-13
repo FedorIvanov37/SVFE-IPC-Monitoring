@@ -178,7 +178,7 @@ I/O interactions perform through the standard Linux stream. The output data will
 ### About IPC
 
 
-Short: IPC is inter-process communication. Internal data exchange, performing during processing the system tasks.
+>Short: IPC is inter-process communication. Internal data exchange, performing during processing the system tasks.
 
 Internal SV IPC based on a kit of FIFO-channels for messaging between two application modules. The channels are called Message Queues, application modules are Processes. Each Message Queue has a Sender and Receiver Processes. Sender and Receiver is a kind of role of the Process during internal data exchange. 
 
