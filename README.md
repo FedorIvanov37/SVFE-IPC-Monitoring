@@ -16,9 +16,9 @@
 
 
 ### Script purpose 
-The script will return JSON-like representation with count of pending messages in Message Queues and Receiver's Process name for each Message Queue. 
+The script will return JSON-like representation containing count of pending Messages and Receiver's Process name for each Message Queue. 
 
-The Script runs by Zabbix agent in an endless cycle for online tracking interaction between SVFE processes.
+The Script is executed by Zabbix agent for online tracking interaction between SVFE Processes.
 
 If you don't know what the IPC actually mean - go to [IPC related info](#ipc-related-information) first.
 
@@ -28,8 +28,7 @@ The script has no specific run parameters, it runs directly from bash
 
 `$ perl svfe_ipc_monitoring.pl;`
 
-
-The result will be printed once after the script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
+The result will be printed once after the script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to repeat the script execution.
 
 
 <details>
@@ -158,7 +157,7 @@ The result will be printed once after the script launch, then the script will fi
 ```
 </details>
 
-I/O interactions perform through the standard Linux stream. The output data will be sent to stdout.
+I/O interactions use standard Linux stream. The output data will be sent to stdout.
 
 > ℹ️ By the way 
 >
@@ -190,10 +189,9 @@ I/O interactions perform through the standard Linux stream. The output data will
 
 ### About IPC
 
+>Short: IPC is inter-process communication. Internal data exchange, performing during processing the system tasks by SVFE.
 
->Short: IPC is inter-process communication. Internal data exchange, performing during processing the system tasks.
-
-Internal SV IPC is based on a Message Queues, Queues used for messaging between two Processes. Each Message Queue has a Sender and Receiver Processes. Sender and Receiver is a kind of role of the Process during internal data exchange. 
+Internal SVFE IPC is based on a Message Queues, Queues used for messaging between two Processes. Each Message Queue has a Sender and Receiver Processes. Sender and Receiver is a kind of role of the Process during internal data exchange. 
 
 ![image](https://www.tutorialspoint.com/inter_process_communication/images/message_queue.jpg)
 > On the picture Process A as a Sender sends Message to Process B using Message Queue. Message Queue receives and transfers the Message to the Receiver Process B. Process B receives the Message as the Receiver and makes its own part of work. When work of Process B will be finished the Message will be sent forth using another Message Queue.
