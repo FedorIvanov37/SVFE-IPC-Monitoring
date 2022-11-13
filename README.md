@@ -123,22 +123,22 @@ perl svfe_ipc_monitoring.pl;
   Below you can find a hypothetical response to the monitoring script with the data analysis example
 
 ```
-[                                // The JSON-like list 
-  {                              // Of individual dictionaries for each process
+[                                    // The JSON-like list 
+  {                                  // Of individual dictionaries for each process
     "process_name": "tcpcomms",      
-    "message": 110               // tcpcomms doesn't look good
+    "message": 110                   // tcpcomms doesn't look good
   },
   {
     "process_name": "PROCESS_DOWN",  // Some processes are down and accumulating the Queues
     "message": 54
   },
   {
-   "process_name": "timer00",    // In the same time the timer looks fine
+   "process_name": "timer00",        // In the same time the timer looks fine
    "message": 0
  },
  ...
  ...
- // More dictionaries
+ // More dictionaries below
 ]
 ```
 </details>
