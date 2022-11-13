@@ -138,7 +138,7 @@ perl svfe_ipc_monitoring.pl;
  },
  ...
  ...
- // More dictionaries
+ // More dictionaries below
 ]
 ```
 </details>
