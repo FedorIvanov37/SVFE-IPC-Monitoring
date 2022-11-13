@@ -10,10 +10,10 @@ The script runs by Zabbix agent in an endless cycle for online tracking interact
 
 ### Usage 
 
-The script has no run parameters, you can run it as is.
-```bash
-perl svfe_ipc_monitoring.pl;
-```
+The script has no run parameters, you can run it as is
+
+`perl svfe_ipc_monitoring.pl;`
+
 
 The queue data will be printed once after the script launch, then the script will finish the work. It doesn't repeat the checking by itself, so, if you need multiple checking you have to run the script many times.
 
@@ -146,16 +146,15 @@ The queue data will be printed once after the script launch, then the script wil
 
 I/O interactions perform through the standard Linux stream. The output data will be sent to stdout.
 
-Be aware: direct run like "./svfe_ipc_monitoring.pl;" requires permissions to execute the script file. At the same time if you are running the script through Perl like "perl ./svfe_ipc_monitoring.pl;" read permission will be enough to run the script.
+Be aware: direct run like `$ svfe_ipc_monitoring.pl;` requires permissions to execute the script file. At the same time if you are running the script through Perl like `$ perl svfe_ipc_monitoring.pl;` read permission will be enough to run the script.
 
-
-```bash
-svfe_ipc_monitoring.pl;        # Will run only if you have execution permissions
-```
-```bash
-perl svfe_ipc_monitoring.pl;   # Will run even if you have read-only permissions
+```bash 
+svfe_ipc_monitoring.pl  # Will run only if you have execution permissions
 ```
 
+```bash
+perl svfe_ipc_monitoring.pl;  # Will run even if you have read-only permissions
+```
 
 ### Special conditions
  * When SVFE runs a few same processes in parallel - the messages count will be summarized using the process name
@@ -191,14 +190,14 @@ Table of the reaction levels when the IPC Queue has a pending messages
 
 | Messages count |0-2 min  |2-5 min  | 5+ min  | Episodic |         
 | -------------- |---------|---------|---------|----------|
-|         0-10   | ✅      | ✅     | ✅      | ✅      |
-|         10-50  | ⚠️      | 🔴     | 🔴      | ⚠️      |
+|         0-10   | 🟢      | 🟢     | 🟡      | 🟡      |
+|         10-50  | 🟡      | 🔴     | 🔴      | 🟡      |
 |         50+    | 🔴      | 🔴     | 🔴      | 🔴      |
 
 
-✅ - OK, not a problem
+🟢 - OK, most probably we have no problem
 
-⚠️ - WARNING, need to check the system, probably something goes wrong
+🟡 - WARNING, need to check the system, probably something goes wrong
 
 🔴 - CRITICAL, need to react immediately
 
@@ -214,13 +213,20 @@ Usually one of the following problems becomes the reason of the messages got stu
 * Network interruptions
 * Internal problem with the application process
 
+Typical symptoms for IPC problems are:
+
+* Many unexpected declines on production
+* SV does not answer PSP in time. On the PSP side transactions are getting the decline "Communication problem"
+* SV answer with decline code 68 Timeout (F39 in logs = 68)
+* Abnormal network activity, SV don't answer long time, then put batch of responses in short period
+
 So, in case when you see the problem with stuck messages check the following:
 
+* Transactions approval rate. First we need to determine is the problem still active or not.
 * System resource availability - RAM, CPU, etc
 * Database availability and response time, running jobs, deadlocks
 * Network connections and response time
 * Few last system changes which would increase system response time
-
 
 ## About 
 
