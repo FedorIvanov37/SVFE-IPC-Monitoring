@@ -240,6 +240,7 @@ In case when you see the problem with stuck messages check the following:
 >
 >Your feedback and suggestions are general drivers of the monitoring system evolution.
 
+
 SVFE IPC Message Queues Monitoring v1.0
 
 Developed by Fedor Ivanov | Unlimint
