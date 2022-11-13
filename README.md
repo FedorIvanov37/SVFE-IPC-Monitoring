@@ -148,7 +148,7 @@ The queue data will be printed once after the script launch, then the script wil
 
 I/O interactions perform through the standard Linux stream. The output data will be sent to stdout.
 
-> By the way 
+> ℹ️ By the way 
 >
 > Direct run like `$ svfe_ipc_monitoring.pl;` requires permissions to execute the script file. 
 > At the same time if you are running the script through Perl like `$ perl svfe_ipc_monitoring.pl;` read permission will be enough to run the script.
