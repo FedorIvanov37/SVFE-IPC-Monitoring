@@ -2,10 +2,10 @@
 
 ## SVFE IPC Message Queues Monitoring
 
-### Glossary, who is who
-
 <details>
-  <summary>💡 Glossary</summary>
+  <summary>💡 Glossary who is who</summary>
+
+An explanation of SV-specific terms, which will be used in this document
   
 | Term          | Description                                                                                     |
 |---------------|----------------------------------------------------------------------------------------------   |
