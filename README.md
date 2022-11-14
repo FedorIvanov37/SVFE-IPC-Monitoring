@@ -171,12 +171,11 @@ I/O interactions use standard Linux stream. The output data will be sent to stdo
 > At the same time if you are running the script through Perl like `$ perl svfe_ipc_monitoring.pl;` read permission will be enough to run the script.
 >
 >```bash 
-># This command will run only if you have execution permissions
->$ svfe_ipc_monitoring.pl;
+>$ svfe_ipc_monitoring.pl; # This command will run only if you have execution permissions
+>```
 >
->
-># This command will run even if you have read-only permissions
->$ perl svfe_ipc_monitoring.pl;
+>```bash
+>$ perl svfe_ipc_monitoring.pl; # This command will run even if you have read-only permissions
 >```
 
 ### Special conditions
@@ -216,11 +215,14 @@ Message Queues maintaining by bash command line. Be careful with `ipcrm` command
 
 ```bash
 $ ipcs -q; # Get current Message Queues status
-
+```
+```bash
 $ ipcs -p; # Get pid of sender and receiver for each Message Queue in system
-
+```
+```bash
 $ ipcrm -q <qud>; # Remove the queue and destroy all messages inside
 ```
+
 ### Common reasons for problems with IPC
 
 Cause of the queues accumulation can be many different problems. In general, messages accumulate in queues because the SVFE application process waits for some event or works too slowly and cannot get new messages to process. Mostly SV by itself is not the root cause of the problem.
@@ -251,9 +253,9 @@ Table of the system malfunction levels when the IPC Queue has a pending messages
 
 | Messages count |0-2 min  |2-5 min  | 5+ min  | Episodic |         
 | -------------- |---------|---------|---------|----------|
-|         0-10   | 🟢      | 🟢      | 🟡      | 🟡       |
-|         10-50  | 🟡      | 🔴      | 🔴      | 🟡       |
-|         50+    | 🔴      | 🔴      | 🔴      | 🔴       |
+|         0-10   | 🟢      | 🟢      | 🟡     | 🟡      |
+|         10-50  | 🟡      | 🔴      | 🔴     | 🟡      |
+|         50+    | 🔴      | 🔴      | 🔴     | 🔴      |
 
 
 🟢 OK, most probably we have no problem.
