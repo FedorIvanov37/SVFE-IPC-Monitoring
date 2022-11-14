@@ -210,7 +210,17 @@ See more about IPC here:
 * [Tutorials point IPC article](https://www.tutorialspoint.com/inter_process_communication/inter_process_communication_message_queues.htm)
 * [Wikipedia Message Queue article](https://en.m.wikipedia.org/wiki/Message_queue)
 
+### IPC Management
 
+Message Queues maintaining by bash command line. Be careful with `ipcrm` command, it removes the Message Queue with all included messages.
+
+```bash
+$ ipcs -q; # Get current Message Queues status
+
+$ ipcs -p; # Get pid of sender and receiver for each Message Queue in system
+
+$ ipcrm -q <qud>; # Remove the queue and destroy all messages inside
+```
 ### Common reasons for problems with IPC
 
 Cause of the queues accumulation can be many different problems. In general, messages accumulate in queues because the SVFE application process waits for some event or works too slowly and cannot get new messages to process. Mostly SV by itself is not the root cause of the problem.
@@ -228,7 +238,6 @@ Most common one of the following problems becomes the reason of the messages got
 * SV does not answer PSP in time. On the PSP side transactions are getting the decline "Communication problem"
 * SV answer with decline code 68 Timeout (F39 in logs = 68)
 * Abnormal network activity, SV don't answer long time, then put batch of responses in short period
-* Command `$ipcs -q`, executed on SF server
 
 ## Reaction
 
