@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# SVFE IPC Message Queues Monitoring
+# ⚝⚝⚝ SVFE IPC Message Queues Monitoring ⚝⚝⚝
 #
 # Purpose: Get current status of IPC message queues used by 
 #          SVFE application's processes, such as nwint, epayint, tcpcomms, etc. 
