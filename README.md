@@ -1,11 +1,10 @@
 ![image](https://cs4.pikabu.ru/post_img/2014/03/28/10/1396020816_2021692751.gif?_gl=1*u9yyqr*_ga*MzIwMTE5OTk2LjE2NjM1MDM5NjE.)
-⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝
+
 ## SVFE IPC Message Queues Monitoring
 
 <details>
 
-
-  <summary>⚝Glossary, who is who</summary>
+  <summary>💡Glossary, who is who</summary>
 
 
 SV-specific terms, used in this document defined below
@@ -286,7 +285,7 @@ Written by Fedor Ivanov | Unlimint
 Released in Nov 2022
 ```
 
-> 👋 In case of any question fill free to [contact](mailto:f.ivanov@unlimint.com) author directly. 
+> 👋 In case of any question fill free to [contact author](mailto:f.ivanov@unlimint.com) directly. 
 >
 > Your feedback and suggestions are general drivers of the monitoring system evolution.
 
