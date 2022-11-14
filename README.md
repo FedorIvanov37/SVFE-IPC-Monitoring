@@ -1,6 +1,6 @@
 ![image](https://cs4.pikabu.ru/post_img/2014/03/28/10/1396020816_2021692751.gif?_gl=1*u9yyqr*_ga*MzIwMTE5OTk2LjE2NjM1MDM5NjE.)
-
-## ⚝ SVFE IPC Message Queues Monitoring ⚝
+⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝⚝
+## SVFE IPC Message Queues Monitoring
 
 <details>
 
