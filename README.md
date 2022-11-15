@@ -2,13 +2,9 @@
 
 ## SVFE IPC Message Queues Monitoring
 
-<details>
+### Definition
 
-
-  <summary>💡Glossary, who is who</summary>
-
-
-SV-specific terms, used in this document defined below
+SV-specific terms, used in this document
   
 | Term          | Description                                                                                       |
 |---------------|----------------------------------------------------------------------------------------------     |
@@ -21,7 +17,6 @@ SV-specific terms, used in this document defined below
 | Sender        | Process, sending the Message using Message Queue                                                  |
 | Receiver      | Process, receives the Message using Message Queue                                                 |
 
-</details>
 
 ### Script purpose 
 The script returns JSON-like representation containing count of pending Messages and Receiver's Process name for each Message Queue. 
