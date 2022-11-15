@@ -210,8 +210,9 @@ See more about IPC here:
 * [Wikipedia Message Queue article](https://en.m.wikipedia.org/wiki/Message_queue)
 
 ### IPC Management
+> ⚠️ Be careful with `ipcrm` command, because it completely removes the Message Queue with all included messages.
 
-Message Queues maintaining by bash command line. Be careful with `ipcrm` command, it removes the Message Queue with all included messages.
+
 
 ```bash
 $ ipcs -q; # Get current Message Queues status
@@ -220,7 +221,7 @@ $ ipcs -q; # Get current Message Queues status
 $ ipcs -p; # Get pid of sender and receiver for each Message Queue in system
 ```
 ```bash
-$ ipcrm -q <qud>; # Remove the queue and destroy all messages inside
+$ ipcrm -q <qud>; # Remove the queue. ⚠️ All pending messages will be completely lost. 
 ```
 
 ### Common reasons for problems with IPC
